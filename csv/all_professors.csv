@@ -1,0 +1,4 @@
+professor_ID,professor_LastName,professor_FirstName,professor_ContactNo,professor_desc,professor_Email,professor_Password
+1,01,Professor,,,prof01@test.com,prof01
+2,Bartolome,Sir Jayr,,,bartolome@test.com,bartolome
+3,02,prof,,,prof02@test.com,05b292a252a823a6b9263f6fb81c87148177d9e4d4e08c07008e79d54172efec

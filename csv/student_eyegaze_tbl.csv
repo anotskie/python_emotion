@@ -1,0 +1,541 @@
+stud_Email,eyegaze_name,eyegaze_date_captured,eyegaze_time_captured
+roque@test.com,Disengaged,2023-11-20,14:35:47
+roque@test.com,Disengaged,2023-11-21,11:56:02
+roque@test.com,Nominally Engaged,2023-11-21,19:33:37
+roque@test.com,Nominally Engaged,2023-11-21,19:33:44
+roque@test.com,Nominally Engaged,2023-11-21,19:33:47
+roque@test.com,Nominally Engaged,2023-11-21,19:33:50
+roque@test.com,Nominally Engaged,2023-11-21,19:33:53
+roque@test.com,Nominally Engaged,2023-11-21,19:33:56
+roque@test.com,Nominally Engaged,2023-11-21,19:33:59
+roque@test.com,Nominally Engaged,2023-11-21,19:34:03
+roque@test.com,Nominally Engaged,2023-11-21,19:34:15
+roque@test.com,Nominally Engaged,2023-11-21,19:34:18
+roque@test.com,Nominally Engaged,2023-11-21,19:34:21
+roque@test.com,Nominally Engaged,2023-11-21,19:34:24
+roque@test.com,Disengaged,2023-11-23,14:47:18
+roque@test.com,Disengaged,2023-11-23,14:47:18
+roque@test.com,Disengaged,2023-11-23,14:47:21
+roque@test.com,Nominally Engaged,2023-11-23,14:47:21
+roque@test.com,Disengaged,2023-11-23,14:47:27
+roque@test.com,Disengaged,2023-11-23,14:47:27
+roque@test.com,Nominally Engaged,2023-11-23,14:47:27
+roque@test.com,Disengaged,2023-11-23,14:47:30
+roque@test.com,Disengaged,2023-11-23,14:47:30
+roque@test.com,Disengaged,2023-11-23,14:47:33
+roque@test.com,Disengaged,2023-11-23,14:47:36
+roque@test.com,Disengaged,2023-11-23,14:47:36
+roque@test.com,Disengaged,2023-11-23,14:47:36
+roque@test.com,Disengaged,2023-11-23,14:47:39
+roque@test.com,Disengaged,2023-11-23,14:47:39
+roque@test.com,Disengaged,2023-11-23,14:47:39
+roque@test.com,Disengaged,2023-11-23,14:47:42
+roque@test.com,Disengaged,2023-11-23,14:47:49
+roque@test.com,Disengaged,2023-11-23,14:47:49
+roque@test.com,Disengaged,2023-11-23,14:47:49
+roque@test.com,Disengaged,2023-11-23,14:47:52
+roque@test.com,Disengaged,2023-11-23,14:47:52
+roque@test.com,Disengaged,2023-11-23,14:47:55
+roque@test.com,Disengaged,2023-11-23,14:47:55
+roque@test.com,Disengaged,2023-11-23,14:47:58
+roque@test.com,Disengaged,2023-11-23,14:47:58
+roque@test.com,Disengaged,2023-11-23,14:48:01
+roque@test.com,Disengaged,2023-11-23,14:48:01
+roque@test.com,Disengaged,2023-11-23,14:48:01
+roque@test.com,Disengaged,2023-11-23,14:48:04
+roque@test.com,Disengaged,2023-11-23,14:48:07
+roque@test.com,Disengaged,2023-11-23,14:48:07
+roque@test.com,Disengaged,2023-11-23,14:48:10
+roque@test.com,Disengaged,2023-11-23,14:48:10
+roque@test.com,Nominally Engaged,2023-11-23,14:48:10
+roque@test.com,Disengaged,2023-11-23,14:48:13
+roque@test.com,Disengaged,2023-11-23,14:48:13
+roque@test.com,Disengaged,2023-11-23,20:51:20
+roque@test.com,Disengaged,2023-11-23,20:51:23
+roque@test.com,Disengaged,2023-11-23,20:51:42
+roque@test.com,Disengaged,2023-11-23,20:51:45
+roque@test.com,Disengaged,2023-11-23,20:51:45
+roque@test.com,Disengaged,2023-11-23,20:51:49
+roque@test.com,Disengaged,2023-11-23,20:51:49
+roque@test.com,Disengaged,2023-11-23,20:52:05
+roque@test.com,Engaged,2023-11-26,22:09:54
+roque@test.com,Engaged,2023-11-26,22:09:54
+roque@test.com,Nominally Engaged,2023-11-26,22:09:58
+roque@test.com,Nominally Engaged,2023-11-26,22:09:58
+roque@test.com,Engaged,2023-11-26,22:10:01
+roque@test.com,Engaged,2023-11-26,22:10:01
+roque@test.com,Nominally Engaged,2023-11-26,22:10:05
+roque@test.com,Nominally Engaged,2023-11-26,22:10:05
+roque@test.com,Nominally Engaged,2023-11-26,22:10:08
+roque@test.com,Nominally Engaged,2023-11-26,22:10:08
+roque@test.com,Nominally Engaged,2023-11-26,22:10:08
+roque@test.com,Nominally Engaged,2023-11-26,22:10:11
+roque@test.com,Nominally Engaged,2023-11-26,22:10:11
+roque@test.com,Disengaged,2023-11-26,22:10:14
+roque@test.com,Nominally Engaged,2023-11-26,22:10:17
+roque@test.com,Nominally Engaged,2023-11-26,22:10:17
+roque@test.com,Nominally Engaged,2023-11-26,22:10:21
+roque@test.com,Nominally Engaged,2023-11-26,22:10:21
+roque@test.com,Engaged,2023-11-26,22:10:24
+roque@test.com,Engaged,2023-11-26,22:10:24
+roque@test.com,Engaged,2023-11-26,22:10:27
+roque@test.com,Engaged,2023-11-26,22:10:27
+roque@test.com,Engaged,2023-11-26,22:10:30
+roque@test.com,Engaged,2023-11-26,22:10:30
+roque@test.com,Nominally Engaged,2023-11-26,22:10:30
+roque@test.com,Engaged,2023-11-26,22:10:34
+roque@test.com,Engaged,2023-11-26,22:10:34
+roque@test.com,Nominally Engaged,2023-11-26,22:10:34
+roque@test.com,Nominally Engaged,2023-11-26,22:10:37
+roque@test.com,Nominally Engaged,2023-11-26,22:10:37
+roque@test.com,Engaged,2023-11-26,22:10:37
+roque@test.com,Engaged,2023-11-26,22:10:40
+roque@test.com,Engaged,2023-11-26,22:10:40
+roque@test.com,Engaged,2023-11-26,22:10:43
+roque@test.com,Engaged,2023-11-26,22:10:43
+roque@test.com,Nominally Engaged,2023-11-26,22:10:43
+roque@test.com,Nominally Engaged,2023-11-26,22:10:46
+roque@test.com,Nominally Engaged,2023-11-26,22:10:46
+roque@test.com,Engaged,2023-11-26,22:34:57
+roque@test.com,Engaged,2023-11-26,22:34:57
+roque@test.com,Nominally Engaged,2023-11-26,22:35:00
+roque@test.com,Nominally Engaged,2023-11-26,22:35:00
+roque@test.com,Nominally Engaged,2023-11-26,22:35:04
+roque@test.com,Nominally Engaged,2023-11-26,22:35:04
+roque@test.com,Nominally Engaged,2023-11-26,22:35:07
+roque@test.com,Nominally Engaged,2023-11-26,22:35:07
+roque@test.com,Engaged,2023-11-26,22:35:11
+roque@test.com,Engaged,2023-11-26,22:35:11
+roque@test.com,Engaged,2023-11-26,22:35:14
+roque@test.com,Engaged,2023-11-26,22:35:14
+roque@test.com,Engaged,2023-11-26,22:35:17
+roque@test.com,Nominally Engaged,2023-11-26,22:35:17
+roque@test.com,Engaged,2023-11-26,22:35:20
+roque@test.com,Engaged,2023-11-26,22:35:20
+roque@test.com,Engaged,2023-11-26,22:35:23
+roque@test.com,Engaged,2023-11-26,22:35:23
+roque@test.com,Nominally Engaged,2023-11-26,22:35:27
+roque@test.com,Nominally Engaged,2023-11-26,22:35:27
+roque@test.com,Engaged,2023-11-26,22:35:27
+roque@test.com,Disengaged,2023-11-26,22:35:30
+roque@test.com,Disengaged,2023-11-26,22:35:30
+roque@test.com,Engaged,2023-11-26,22:35:30
+roque@test.com,Disengaged,2023-11-26,22:35:33
+roque@test.com,Disengaged,2023-11-26,22:35:33
+roque@test.com,Disengaged,2023-11-26,22:35:36
+roque@test.com,Disengaged,2023-11-26,22:35:36
+roque@test.com,Disengaged,2023-11-26,22:35:40
+roque@test.com,Disengaged,2023-11-26,22:35:40
+roque@test.com,Nominally Engaged,2023-11-26,22:35:40
+roque@test.com,Nominally Engaged,2023-11-26,22:35:43
+roque@test.com,Nominally Engaged,2023-11-26,22:35:43
+roque@test.com,Engaged,2023-11-26,22:35:46
+roque@test.com,Engaged,2023-11-26,22:35:46
+roque@test.com,Engaged,2023-11-26,22:35:49
+roque@test.com,Engaged,2023-11-26,22:35:49
+roque@test.com,Engaged,2023-11-26,23:02:54
+roque@test.com,Engaged,2023-11-26,23:02:57
+roque@test.com,Engaged,2023-11-26,23:02:57
+roque@test.com,Engaged,2023-11-26,23:03:00
+roque@test.com,Engaged,2023-11-26,23:03:00
+roque@test.com,Engaged,2023-11-26,23:03:04
+roque@test.com,Engaged,2023-11-26,23:03:04
+roque@test.com,Engaged,2023-11-26,23:03:07
+roque@test.com,Engaged,2023-11-26,23:03:07
+roque@test.com,Engaged,2023-11-26,23:03:10
+roque@test.com,Engaged,2023-11-26,23:03:10
+roque@test.com,Engaged,2023-11-26,23:03:13
+roque@test.com,Engaged,2023-11-26,23:03:13
+roque@test.com,Engaged,2023-11-26,23:03:17
+roque@test.com,Engaged,2023-11-26,23:03:17
+roque@test.com,Engaged,2023-11-26,23:03:20
+roque@test.com,Engaged,2023-11-26,23:03:20
+roque@test.com,Engaged,2023-11-26,23:03:23
+roque@test.com,Engaged,2023-11-26,23:03:23
+roque@test.com,Engaged,2023-11-26,23:03:26
+roque@test.com,Engaged,2023-11-26,23:03:26
+roque@test.com,Engaged,2023-11-26,23:03:29
+roque@test.com,Engaged,2023-11-26,23:03:29
+roque@test.com,Engaged,2023-11-26,23:03:32
+roque@test.com,Engaged,2023-11-26,23:03:32
+roque@test.com,Nominally Engaged,2023-11-26,23:03:36
+roque@test.com,Nominally Engaged,2023-11-26,23:03:36
+roque@test.com,Nominally Engaged,2023-11-26,23:03:39
+roque@test.com,Nominally Engaged,2023-11-26,23:03:39
+roque@test.com,Nominally Engaged,2023-11-26,23:03:42
+roque@test.com,Nominally Engaged,2023-11-26,23:03:42
+roque@test.com,Nominally Engaged,2023-11-26,23:03:45
+roque@test.com,Nominally Engaged,2023-11-26,23:03:45
+roque@test.com,Nominally Engaged,2023-11-26,23:03:49
+roque@test.com,Nominally Engaged,2023-11-26,23:03:49
+roque@test.com,Nominally Engaged,2023-11-28,6:24:21
+roque@test.com,Nominally Engaged,2023-11-28,6:24:21
+roque@test.com,Engaged,2023-11-28,6:24:24
+roque@test.com,Engaged,2023-11-28,6:24:24
+roque@test.com,Nominally Engaged,2023-11-28,6:24:24
+roque@test.com,Nominally Engaged,2023-11-28,6:24:37
+roque@test.com,Nominally Engaged,2023-11-28,6:24:37
+roque@test.com,Nominally Engaged,2023-11-28,6:24:40
+roque@test.com,Nominally Engaged,2023-11-28,6:24:40
+roque@test.com,Nominally Engaged,2023-11-28,6:24:50
+roque@test.com,Nominally Engaged,2023-11-28,6:24:50
+roque@test.com,Nominally Engaged,2023-11-28,6:24:53
+roque@test.com,Nominally Engaged,2023-11-28,6:24:53
+roque@test.com,Nominally Engaged,2023-11-28,6:24:56
+roque@test.com,Nominally Engaged,2023-11-28,6:24:56
+roque@test.com,Nominally Engaged,2023-11-28,6:25:09
+roque@test.com,Nominally Engaged,2023-11-28,6:25:09
+roque@test.com,Engaged,2023-11-28,6:29:05
+roque@test.com,Nominally Engaged,2023-11-28,6:29:05
+roque@test.com,Engaged,2023-11-28,6:29:08
+roque@test.com,Nominally Engaged,2023-11-28,6:29:08
+roque@test.com,Nominally Engaged,2023-11-28,6:29:11
+roque@test.com,Nominally Engaged,2023-11-28,6:29:17
+roque@test.com,Nominally Engaged,2023-11-28,6:29:17
+roque@test.com,Nominally Engaged,2023-11-28,6:29:20
+roque@test.com,Nominally Engaged,2023-11-28,6:29:27
+roque@test.com,Nominally Engaged,2023-11-28,6:29:43
+roque@test.com,Nominally Engaged,2023-11-28,6:32:54
+roque@test.com,Nominally Engaged,2023-11-28,6:33:00
+roque@test.com,Nominally Engaged,2023-11-28,6:33:06
+roque@test.com,Nominally Engaged,2023-11-28,6:33:09
+roque@test.com,Nominally Engaged,2023-11-28,6:33:12
+roque@test.com,Engaged,2023-11-28,6:33:22
+roque@test.com,Nominally Engaged,2023-11-28,6:33:25
+roque@test.com,Engaged,2023-11-28,6:33:25
+roque@test.com,Nominally Engaged,2023-11-28,6:33:28
+roque@test.com,Nominally Engaged,2023-11-28,6:33:37
+roque@test.com,Nominally Engaged,2023-11-28,6:37:02
+roque@test.com,Nominally Engaged,2023-11-28,6:37:02
+roque@test.com,Nominally Engaged,2023-11-28,6:37:17
+roque@test.com,Nominally Engaged,2023-11-28,6:37:17
+roque@test.com,Nominally Engaged,2023-11-28,6:37:33
+roque@test.com,Nominally Engaged,2023-11-28,6:37:48
+roque@test.com,Nominally Engaged,2023-11-28,6:37:48
+roque@test.com,Nominally Engaged,2023-11-28,6:38:03
+roque@test.com,Nominally Engaged,2023-11-28,6:38:03
+roque@test.com,Nominally Engaged,2023-11-28,6:38:18
+roque@test.com,Nominally Engaged,2023-11-28,6:38:18
+roque@test.com,Nominally Engaged,2023-11-28,6:38:33
+roque@test.com,Nominally Engaged,2023-11-28,6:38:33
+roque@test.com,Nominally Engaged,2023-11-28,6:38:49
+roque@test.com,Nominally Engaged,2023-11-28,6:38:49
+roque@test.com,Disengaged,2023-11-28,6:39:04
+roque@test.com,Nominally Engaged,2023-11-28,6:39:19
+roque@test.com,Disengaged,2023-11-28,6:39:35
+roque@test.com,Disengaged,2023-11-28,6:39:35
+roque@test.com,Engaged,2023-11-28,6:39:51
+roque@test.com,Engaged,2023-11-28,6:41:07
+roque@test.com,Engaged,2023-11-28,6:41:23
+roque@test.com,Nominally Engaged,2023-11-28,6:47:05
+roque@test.com,Nominally Engaged,2023-11-28,6:47:05
+roque@test.com,Engaged,2023-11-28,6:47:08
+roque@test.com,Engaged,2023-11-28,6:47:08
+roque@test.com,Engaged,2023-11-28,6:47:11
+roque@test.com,Nominally Engaged,2023-11-28,6:47:11
+roque@test.com,Engaged,2023-11-28,6:47:11
+roque@test.com,Engaged,2023-11-28,6:47:14
+roque@test.com,Engaged,2023-11-28,6:47:14
+roque@test.com,Engaged,2023-11-28,6:47:17
+roque@test.com,Nominally Engaged,2023-11-28,6:47:17
+roque@test.com,Nominally Engaged,2023-11-28,6:47:21
+roque@test.com,Nominally Engaged,2023-11-28,6:47:21
+roque@test.com,Engaged,2023-11-28,6:47:24
+roque@test.com,Engaged,2023-11-28,6:47:24
+roque@test.com,Engaged,2023-11-28,6:47:27
+roque@test.com,Engaged,2023-11-28,6:47:27
+roque@test.com,Engaged,2023-11-28,6:47:30
+roque@test.com,Engaged,2023-11-28,6:47:30
+roque@test.com,Engaged,2023-11-28,7:06:05
+roque@test.com,Engaged,2023-11-28,7:06:05
+roque@test.com,Nominally Engaged,2023-11-28,7:06:05
+roque@test.com,Nominally Engaged,2023-11-28,7:06:09
+roque@test.com,Nominally Engaged,2023-11-28,7:06:09
+roque@test.com,Engaged,2023-11-28,7:06:09
+roque@test.com,Engaged,2023-11-28,7:06:12
+roque@test.com,Nominally Engaged,2023-11-28,7:06:12
+roque@test.com,Nominally Engaged,2023-11-28,7:06:12
+roque@test.com,Engaged,2023-11-28,7:06:12
+roque@test.com,Nominally Engaged,2023-11-28,7:06:15
+roque@test.com,Nominally Engaged,2023-11-28,7:06:15
+roque@test.com,Engaged,2023-11-28,7:06:15
+roque@test.com,Nominally Engaged,2023-11-28,7:06:18
+roque@test.com,Nominally Engaged,2023-11-28,7:06:18
+roque@test.com,Engaged,2023-11-28,7:06:18
+roque@test.com,Nominally Engaged,2023-11-28,7:06:22
+roque@test.com,Nominally Engaged,2023-11-28,7:06:22
+roque@test.com,Engaged,2023-11-28,7:06:25
+roque@test.com,Engaged,2023-11-28,7:06:25
+roque@test.com,Nominally Engaged,2023-11-28,7:06:25
+roque@test.com,Nominally Engaged,2023-11-28,7:06:25
+roque@test.com,Engaged,2023-11-28,7:06:28
+roque@test.com,Engaged,2023-11-28,7:06:28
+roque@test.com,Nominally Engaged,2023-11-28,7:06:28
+roque@test.com,Engaged,2023-11-28,7:06:31
+roque@test.com,Engaged,2023-11-28,7:06:31
+roque@test.com,Nominally Engaged,2023-11-28,7:06:31
+roque@test.com,Nominally Engaged,2023-11-28,7:06:31
+roque@test.com,Engaged,2023-11-28,7:06:34
+roque@test.com,Nominally Engaged,2023-11-28,7:06:34
+roque@test.com,Nominally Engaged,2023-11-28,7:06:34
+roque@test.com,Engaged,2023-11-28,7:06:37
+roque@test.com,Engaged,2023-11-28,7:06:37
+roque@test.com,Nominally Engaged,2023-11-28,7:06:37
+roque@test.com,Nominally Engaged,2023-11-28,7:06:41
+roque@test.com,Engaged,2023-11-28,7:06:41
+roque@test.com,Engaged,2023-11-28,7:06:44
+roque@test.com,Engaged,2023-11-28,7:06:44
+roque@test.com,Nominally Engaged,2023-11-28,7:06:44
+roque@test.com,Nominally Engaged,2023-11-28,7:06:50
+roque@test.com,Nominally Engaged,2023-11-28,7:06:50
+roque@test.com,Engaged,2023-11-28,7:06:50
+roque@test.com,Nominally Engaged,2023-11-28,7:06:53
+roque@test.com,Nominally Engaged,2023-11-28,7:06:57
+roque@test.com,Nominally Engaged,2023-11-28,7:07:00
+roque@test.com,Nominally Engaged,2023-11-28,7:07:00
+roque@test.com,Engaged,2023-11-28,8:00:20
+roque@test.com,Engaged,2023-11-28,8:00:22
+roque@test.com,Engaged,2023-11-28,8:00:22
+roque@test.com,Engaged,2023-11-28,8:00:26
+roque@test.com,Engaged,2023-11-28,8:00:26
+roque@test.com,Engaged,2023-11-28,8:00:29
+roque@test.com,Engaged,2023-11-28,8:00:29
+roque@test.com,Nominally Engaged,2023-11-28,8:00:32
+roque@test.com,Engaged,2023-11-28,8:00:32
+roque@test.com,Engaged,2023-11-28,8:00:38
+roque@test.com,Nominally Engaged,2023-11-28,8:00:38
+roque@test.com,Engaged,2023-11-28,8:00:54
+roque@test.com,Engaged,2023-11-28,8:01:00
+roque@test.com,Engaged,2023-11-28,8:01:03
+roque@test.com,Engaged,2023-11-28,8:01:06
+roque@test.com,Engaged,2023-11-28,8:01:09
+roque@test.com,Nominally Engaged,2023-11-28,8:01:09
+roque@test.com,Nominally Engaged,2023-11-28,8:01:09
+roque@test.com,Engaged,2023-11-28,9:14:22
+roque@test.com,Nominally Engaged,2023-11-28,9:14:22
+roque@test.com,Engaged,2023-11-28,9:14:25
+roque@test.com,Engaged,2023-11-28,9:14:29
+roque@test.com,Nominally Engaged,2023-11-28,9:14:32
+roque@test.com,Nominally Engaged,2023-11-28,9:14:32
+roque@test.com,Nominally Engaged,2023-11-28,9:14:35
+roque@test.com,Nominally Engaged,2023-11-28,9:14:35
+roque@test.com,Nominally Engaged,2023-11-28,9:14:38
+roque@test.com,Nominally Engaged,2023-11-28,9:14:38
+roque@test.com,Nominally Engaged,2023-11-28,9:14:41
+roque@test.com,Nominally Engaged,2023-11-28,9:14:41
+roque@test.com,Nominally Engaged,2023-11-28,9:14:47
+roque@test.com,Nominally Engaged,2023-11-28,9:14:47
+roque@test.com,Nominally Engaged,2023-11-28,9:14:50
+roque@test.com,Nominally Engaged,2023-11-28,9:14:50
+roque@test.com,Nominally Engaged,2023-11-28,9:14:54
+roque@test.com,Nominally Engaged,2023-11-28,9:14:54
+roque@test.com,Nominally Engaged,2023-11-28,9:14:57
+roque@test.com,Nominally Engaged,2023-11-28,9:14:57
+roque@test.com,Nominally Engaged,2023-11-28,9:15:00
+roque@test.com,Nominally Engaged,2023-11-28,9:15:00
+roque@test.com,Nominally Engaged,2023-11-28,9:15:03
+roque@test.com,Nominally Engaged,2023-11-28,9:15:03
+roque@test.com,Nominally Engaged,2023-11-28,9:15:06
+roque@test.com,Nominally Engaged,2023-11-28,9:15:06
+roque@test.com,Nominally Engaged,2023-11-28,9:15:09
+roque@test.com,Nominally Engaged,2023-11-28,9:15:09
+roque@test.com,Nominally Engaged,2023-11-28,9:15:12
+roque@test.com,Nominally Engaged,2023-11-28,9:15:12
+roque@test.com,Nominally Engaged,2023-11-28,9:15:16
+roque@test.com,Nominally Engaged,2023-11-28,9:15:16
+roque@test.com,Engaged,2023-11-28,21:46:56
+roque@test.com,Engaged,2023-11-28,21:46:56
+roque@test.com,Engaged,2023-11-28,21:47:03
+roque@test.com,Engaged,2023-11-28,21:47:15
+roque@test.com,Engaged,2023-11-28,21:47:15
+roque@test.com,Nominally Engaged,2023-11-28,21:47:15
+roque@test.com,Engaged,2023-11-28,21:47:21
+roque@test.com,Engaged,2023-11-28,21:47:21
+roque@test.com,Engaged,2023-11-28,21:47:34
+roque@test.com,Engaged,2023-11-28,21:47:34
+roque@test.com,Engaged,2023-11-28,21:47:40
+roque@test.com,Engaged,2023-11-28,21:47:40
+roque@test.com,Engaged,2023-11-28,21:47:53
+roque@test.com,Engaged,2023-11-28,21:47:53
+roque@test.com,Nominally Engaged,2023-11-28,21:48:13
+roque@test.com,Nominally Engaged,2023-11-28,21:48:25
+roque@test.com,Nominally Engaged,2023-11-28,21:48:38
+roque@test.com,Engaged,2023-11-28,21:48:38
+roque@test.com,Engaged,2023-11-28,21:54:46
+roque@test.com,Engaged,2023-11-28,21:54:46
+roque@test.com,Engaged,2023-11-28,21:54:52
+roque@test.com,Engaged,2023-11-28,21:54:52
+roque@test.com,Engaged,2023-11-28,21:54:58
+roque@test.com,Engaged,2023-11-28,21:54:58
+roque@test.com,Engaged,2023-11-28,21:55:11
+roque@test.com,Nominally Engaged,2023-11-28,21:55:11
+roque@test.com,Engaged,2023-11-28,21:55:11
+roque@test.com,Engaged,2023-11-28,21:55:17
+roque@test.com,Engaged,2023-11-28,21:55:29
+roque@test.com,Engaged,2023-11-28,21:55:36
+roque@test.com,Disengaged,2023-11-28,21:55:42
+roque@test.com,Engaged,2023-11-28,21:55:48
+roque@test.com,Engaged,2023-11-28,21:55:54
+roque@test.com,Engaged,2023-11-28,21:55:54
+roque@test.com,Engaged,2023-11-28,21:56:25
+roque@test.com,Engaged,2023-11-28,21:56:38
+roque@test.com,Nominally Engaged,2023-11-28,22:20:14
+roque@test.com,Nominally Engaged,2023-11-28,22:20:14
+roque@test.com,Engaged,2023-11-28,22:20:17
+roque@test.com,Engaged,2023-11-28,22:20:17
+roque@test.com,Nominally Engaged,2023-11-28,22:20:20
+roque@test.com,Nominally Engaged,2023-11-28,22:20:26
+roque@test.com,Nominally Engaged,2023-11-28,22:20:26
+roque@test.com,Nominally Engaged,2023-11-28,22:20:29
+roque@test.com,Nominally Engaged,2023-11-28,22:20:36
+roque@test.com,Nominally Engaged,2023-11-28,22:20:36
+roque@test.com,Nominally Engaged,2023-11-28,22:20:39
+roque@test.com,Nominally Engaged,2023-11-28,22:20:42
+roque@test.com,Nominally Engaged,2023-11-28,22:20:42
+roque@test.com,Nominally Engaged,2023-11-28,22:20:45
+roque@test.com,Engaged,2023-11-28,22:20:48
+roque@test.com,Engaged,2023-11-28,22:20:48
+roque@test.com,Engaged,2023-11-28,22:20:55
+roque@test.com,Engaged,2023-11-28,22:20:58
+roque@test.com,Nominally Engaged,2023-11-28,22:44:35
+roque@test.com,Nominally Engaged,2023-11-28,22:44:35
+roque@test.com,Nominally Engaged,2023-11-28,22:44:38
+roque@test.com,Nominally Engaged,2023-11-28,22:44:38
+roque@test.com,Nominally Engaged,2023-11-28,22:44:57
+roque@test.com,Nominally Engaged,2023-11-28,22:44:57
+roque@test.com,Nominally Engaged,2023-11-28,22:45:01
+roque@test.com,Nominally Engaged,2023-11-28,22:45:07
+roque@test.com,Nominally Engaged,2023-11-28,22:45:10
+roque@test.com,Nominally Engaged,2023-11-28,22:45:10
+roque_3200693@letran-calamba.edu.ph,Engaged,2023-11-23,16:58:52
+roque_3200693@letran-calamba.edu.ph,Disengaged,2023-11-23,16:58:52
+roque_3200693@letran-calamba.edu.ph,Nominally Engaged,2023-11-23,16:58:58
+roque_3200693@letran-calamba.edu.ph,Engaged,2023-11-23,16:58:58
+roque_3200693@letran-calamba.edu.ph,Disengaged,2023-11-23,16:59:01
+roque_3200693@letran-calamba.edu.ph,Disengaged,2023-11-23,16:59:04
+roque_3200693@letran-calamba.edu.ph,Disengaged,2023-11-23,16:59:04
+roque_3200693@letran-calamba.edu.ph,Disengaged,2023-11-23,16:59:08
+roque_3200693@letran-calamba.edu.ph,Nominally Engaged,2023-11-23,16:59:11
+roque_3200693@letran-calamba.edu.ph,Disengaged,2023-11-23,16:59:14
+roque_3200693@letran-calamba.edu.ph,Disengaged,2023-11-23,16:59:23
+roque_3200693@letran-calamba.edu.ph,Nominally Engaged,2023-11-23,16:59:26
+roque_3200693@letran-calamba.edu.ph,Nominally Engaged,2023-11-23,16:59:29
+roque_3200693@letran-calamba.edu.ph,Nominally Engaged,2023-11-23,16:59:33
+roque_3200693@letran-calamba.edu.ph,Engaged,2023-11-23,16:59:39
+roque_3200693@letran-calamba.edu.ph,Nominally Engaged,2023-11-23,16:59:46
+labongjanna@test.com,Engaged,2024-01-04,23:04:07
+labongjanna@test.com,Engaged,2024-01-04,23:04:07
+labongjanna@test.com,Engaged,2024-01-04,23:04:10
+labongjanna@test.com,Engaged,2024-01-04,23:04:13
+labongjanna@test.com,Engaged,2024-01-04,23:04:16
+labongjanna@test.com,Engaged,2024-01-04,23:04:19
+labongjanna@test.com,Engaged,2024-01-04,23:04:19
+labongjanna@test.com,Engaged,2024-01-04,23:04:22
+labongjanna@test.com,Engaged,2024-01-04,23:04:25
+labongjanna@test.com,Engaged,2024-01-04,23:04:25
+labongjanna@test.com,Engaged,2024-01-04,23:04:28
+labongjanna@test.com,Engaged,2024-01-04,23:04:31
+labongjanna@test.com,Engaged,2024-01-04,23:04:31
+labongjanna@test.com,Engaged,2024-01-04,23:04:38
+labongjanna@test.com,Engaged,2024-01-04,23:04:38
+labongjanna@test.com,Engaged,2024-01-04,23:06:09
+labongjanna@test.com,Engaged,2024-01-04,23:06:09
+labongjanna@test.com,Engaged,2024-01-04,23:06:13
+labongjanna@test.com,Engaged,2024-01-04,23:06:19
+labongjanna@test.com,Engaged,2024-01-04,23:06:19
+labongjanna@test.com,Engaged,2024-01-04,23:06:22
+labongjanna@test.com,Engaged,2024-01-04,23:06:22
+labongjanna@test.com,Engaged,2024-01-04,23:06:25
+labongjanna@test.com,Engaged,2024-01-04,23:06:25
+labongjanna@test.com,Engaged,2024-01-04,23:06:28
+labongjanna@test.com,Engaged,2024-01-04,23:06:28
+labongjanna@test.com,Engaged,2024-01-04,23:06:32
+labongjanna@test.com,Engaged,2024-01-04,23:06:32
+labongjanna@test.com,Engaged,2024-01-04,23:06:35
+labongjanna@test.com,Engaged,2024-01-04,23:06:35
+labongjanna@test.com,Engaged,2024-01-04,23:06:44
+labongjanna@test.com,Engaged,2024-01-04,23:06:44
+labongjanna@test.com,Engaged,2024-01-04,23:06:47
+labongjanna@test.com,Engaged,2024-01-04,23:06:47
+labongjanna@test.com,Engaged,2024-01-04,23:06:50
+labongjanna@test.com,Engaged,2024-01-04,23:06:50
+labongjanna@test.com,Nominally Engaged,2024-01-04,23:06:53
+labongjanna@test.com,Engaged,2024-01-04,23:06:53
+labongjanna@test.com,Nominally Engaged,2024-01-04,23:06:57
+labongjanna@test.com,Engaged,2024-01-04,23:07:00
+labongjanna@test.com,Nominally Engaged,2024-01-04,23:07:03
+labongjanna@test.com,Engaged,2024-01-04,23:07:06
+labongjanna@test.com,Nominally Engaged,2024-01-04,23:07:06
+jannabee@test.com,Engaged,2024-01-16,12:21:39
+jannabee@test.com,Engaged,2024-01-16,12:21:39
+jannabee@test.com,Nominally Engaged,2024-01-16,12:21:42
+jannabee@test.com,Engaged,2024-01-16,12:21:46
+jannabee@test.com,Engaged,2024-01-16,12:21:46
+jannabee@test.com,Engaged,2024-01-16,12:21:49
+jannabee@test.com,Engaged,2024-01-16,12:21:49
+jannabee@test.com,Engaged,2024-01-16,12:21:52
+jannabee@test.com,Engaged,2024-01-16,12:21:52
+jannabee@test.com,Engaged,2024-01-16,12:21:55
+jannabee@test.com,Engaged,2024-01-16,12:21:59
+jannabee@test.com,Engaged,2024-01-16,12:21:59
+jannabee@test.com,Engaged,2024-01-16,12:22:02
+jannabee@test.com,Engaged,2024-01-16,12:22:02
+jannabee@test.com,Engaged,2024-01-16,12:22:05
+jannabee@test.com,Engaged,2024-01-16,12:22:05
+jannabee@test.com,Engaged,2024-01-16,12:22:08
+jannabee@test.com,Engaged,2024-01-16,12:22:11
+jannabee@test.com,Engaged,2024-01-16,12:22:11
+jannabee@test.com,Engaged,2024-01-16,12:22:15
+jannabee@test.com,Engaged,2024-01-16,12:22:15
+jannabee@test.com,Engaged,2024-01-16,12:22:18
+jannabee@test.com,Engaged,2024-01-16,12:22:18
+jannabee@test.com,Engaged,2024-01-16,12:22:21
+jannabee@test.com,Engaged,2024-01-16,12:22:21
+jannabee@test.com,Nominally Engaged,2024-01-16,12:22:28
+jannabee@test.com,Nominally Engaged,2024-01-16,12:22:31
+jannabee@test.com,Disengaged,2024-01-16,14:57:58
+jannabee@test.com,Engaged,2024-01-16,14:57:58
+jannabee@test.com,Engaged,2024-01-16,14:58:10
+jannabee@test.com,Nominally Engaged,2024-01-16,14:58:28
+jannabee@test.com,Engaged,2024-01-16,14:58:28
+jannabee@test.com,Nominally Engaged,2024-01-16,14:58:34
+jannabee@test.com,Nominally Engaged,2024-01-16,14:58:40
+jannabee@test.com,Nominally Engaged,2024-01-16,14:58:40
+jannabee@test.com,Nominally Engaged,2024-01-16,14:58:46
+jannabee@test.com,Nominally Engaged,2024-01-16,14:58:46
+jannabee@test.com,Nominally Engaged,2024-01-16,14:58:52
+jannabee@test.com,Nominally Engaged,2024-01-16,14:58:52
+jannabee@test.com,Nominally Engaged,2024-01-16,14:59:04
+jannabee@test.com,Disengaged,2024-01-16,14:59:10
+jannabee@test.com,Nominally Engaged,2024-01-16,14:59:10
+jannabee@test.com,Nominally Engaged,2024-01-16,14:59:10
+jannabee@test.com,Nominally Engaged,2024-01-16,14:59:16
+jannabee@test.com,Nominally Engaged,2024-01-16,14:59:16
+jannabee@test.com,Disengaged,2024-01-16,14:59:16
+jannabee@test.com,Nominally Engaged,2024-01-16,14:59:23
+jannabee@test.com,Nominally Engaged,2024-01-16,14:59:23
+jannabee@test.com,Nominally Engaged,2024-01-16,14:59:29
+jannabee@test.com,Nominally Engaged,2024-01-16,14:59:29
+jannabee@test.com,Nominally Engaged,2024-01-16,14:59:35
+jannabee@test.com,Nominally Engaged,2024-01-16,14:59:35
+jannabee@test.com,Engaged,2024-01-16,14:59:35
+jannabee@test.com,Disengaged,2024-01-16,14:59:35
+jannabee@test.com,Nominally Engaged,2024-01-16,14:59:41
+jannabee@test.com,Nominally Engaged,2024-01-16,14:59:41
+jannabee@test.com,Engaged,2024-01-16,14:59:41
+gdocfemia@test.com,Nominally Engaged,2024-01-16,15:08:38
+gdocfemia@test.com,Engaged,2024-01-16,15:09:24
+gdocfemia@test.com,Engaged,2024-01-16,15:09:40
+gdocfemia@test.com,Engaged,2024-01-16,15:10:10
+gdocfemia@test.com,Engaged,2024-01-16,15:10:25
+gdocfemia@test.com,Nominally Engaged,2024-01-16,15:10:25
+gdocfemia@test.com,Nominally Engaged,2024-01-16,15:10:55
+gdocfemia@test.com,Engaged,2024-01-16,15:11:11
+gdocfemia@test.com,Engaged,2024-01-16,15:11:41
+gdocfemia@test.com,Engaged,2024-01-16,15:11:41
+gdocfemia@test.com,Engaged,2024-01-16,15:11:56
+gdocfemia@test.com,Engaged,2024-01-16,15:11:56
+gdocfemia@test.com,Engaged,2024-01-16,15:12:12
+gdocfemia@test.com,Engaged,2024-01-16,15:12:12
+gdocfemia@test.com,Engaged,2024-01-16,15:12:42
+gdocfemia@test.com,Engaged,2024-01-16,15:13:13

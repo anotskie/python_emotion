@@ -1,0 +1,12 @@
+student_ID,stud_LastName,stud_FirstName,stud_YearLevel,stud_Course,stud_ContactNo,stud_Bio,stud_Email,stud_Password
+3,Doe,Jane,1,,0912345667,,janedoe@test.com,janedoe1
+4,Doe,John,1,,0234574832,,johndoe@test.com,johndoe1
+5,Roque,Jhazmine,1,,0823742938,,roque@test.com,roque
+6,Labong,Janna,1,,0932492347,,labong@test.com,labong
+8,Roque,Jhazmine,1,,0919392234,,roque_3200693@letran-calamba.edu.ph,0000
+9,01,Student,1,,,,stud01@test.com,stud01
+10,Roque,Jhaz,1,,,,roque01@test.com,roque01
+11,Roque,Mhin,1,,,,roque02@test.com,roque02
+12,Roque,Jhazmine,1,,,,roque03@test.com,869e8296b6a1a880c56bdf09841deedbeac762dcbff5ccfa50935bc402f1359c
+13,Labongs,Janna Erica,1,,,,labongjanna@test.com,8b0870906299229ccc17e9c0ec559e66fa6618639218c15da69a9c9513d78d9e
+14,Labs,Janna,1,,,,jannabee@test.com,d179561d1114ff5ecc8106fd0b6c0387c6684cd62d69c557b847146f65dbdcbb

@@ -1,0 +1,41 @@
+professor_FullName,prof_audit_date_log,prof_audit_time_log,prof_log_status
+"01, Professor",2023-11-20,10:22:26,LOGGED IN
+"01, Professor",2023-11-20,10:26:16,LOGGED IN
+"01, Professor",2023-11-20,10:27:00,LOGGED IN
+"01, Professor",2023-11-20,10:28:09,LOGGED IN
+"01, Professor",2023-11-20,14:38:07,LOGGED IN
+"01, Professor",2023-11-20,14:39:35,LOGGED IN
+"01, Professor",2023-11-20,14:52:08,LOGGED IN
+"01, Professor",2023-11-20,14:52:56,LOGGED IN
+"01, Professor",2023-11-20,14:54:49,LOGGED IN
+"01, Professor",2023-11-21,6:24:32,LOGGED IN
+"01, Professor",2023-11-21,6:24:53,LOGGED OUT
+"01, Professor",2023-11-23,11:41:48,LOGGED IN
+"01, Professor",2023-11-23,11:53:47,LOGGED OUT
+"01, Professor",2023-11-24,13:46:44,LOGGED IN
+"01, Professor",2023-11-25,10:21:15,LOGGED IN
+"01, Professor",2023-11-25,10:21:56,LOGGED OUT
+"01, Professor",2023-11-26,23:51:13,LOGGED IN
+"01, Professor",2023-11-26,23:51:21,LOGGED OUT
+"01, Professor",2023-11-27,21:53:27,LOGGED IN
+"01, Professor",2023-11-27,21:55:15,LOGGED IN
+"01, Professor",2023-11-27,21:58:00,LOGGED IN
+"01, Professor",2023-11-27,22:16:17,LOGGED IN
+"01, Professor",2023-11-27,22:16:27,LOGGED OUT
+"01, Professor",2023-11-27,22:29:33,LOGGED IN
+"01, Professor",2023-11-27,22:31:18,LOGGED IN
+"01, Professor",2023-11-27,22:32:39,LOGGED IN
+"01, Professor",2023-11-27,22:33:44,LOGGED IN
+"01, Professor",2023-11-27,22:34:00,LOGGED OUT
+"01, Professor",2024-01-04,6:11:37,LOGGED IN
+"01, Professor",2024-01-04,6:11:52,LOGGED OUT
+"Bartolome, Sir Jayr",2023-11-18,12:46:28,LOGGED IN
+"Bartolome, Sir Jayr",2023-11-20,13:43:28,LOGGED IN
+"Bartolome, Sir Jayr",2023-11-20,13:46:03,LOGGED IN
+"Bartolome, Sir Jayr",2023-11-20,13:57:09,LOGGED IN
+"Bartolome, Sir Jayr",2023-11-20,13:57:31,LOGGED OUT
+"Bartolome, Sir Jayr",2023-11-20,14:59:35,LOGGED IN
+"Bartolome, Sir Jayr",2023-11-21,6:17:34,LOGGED IN
+"Bartolome, Sir Jayr",2023-11-21,6:17:44,LOGGED OUT
+"Bartolome, Sir Jayr",2023-11-23,17:01:23,LOGGED IN
+"Bartolome, Sir Jayr",2023-11-23,17:04:54,LOGGED OUT
