@@ -13,7 +13,7 @@ from PIL import ImageTk, Image
 from tkinter import ttk
 from datetime import datetime, date
 from matplotlib.backends.backend_pdf import PdfPages
-
+import time
 # Custom Library
 import queries
 import final_emotioncam_teams
@@ -37,7 +37,8 @@ class App(tk.CTk):
         self.title("Real-time Eye Gaze and Emotion Detection App")
         self.geometry(f"{1100}x{600}")
         self.resizable(0,0)
-
+        self.login_attempts = 0
+        self.lockout_timer = None
         # Grid Layout (4x4)
         self.grid_columnconfigure(1, weight=1)
         self.grid_columnconfigure((2, 3), weight=0)
@@ -176,11 +177,6 @@ class App(tk.CTk):
 
 
     def show_reset_password_panel(self):
-        # Implement the logic to show the next panel where the user can input a new password
-        # You may create a new frame or modify the existing one, depending on your UI design
-        # You can also include widgets like entry fields for the new password and a button to confirm the update
-
-        # Example:
         self.forgot_password_frame.place_forget()
         self.reset_password_frame = tk.CTkFrame(self, corner_radius=0)
         self.reset_password_frame.place(x=425, y=110)
@@ -2264,23 +2260,28 @@ class App(tk.CTk):
     def change_appearance_mode_event(self, new_appearance_mode: str):
         tk.set_appearance_mode(new_appearance_mode)
 
-    # CLICK LOGIN
+# CLICK LOGIN
     def login_event(self):
-
         # Check if the user is currently locked out
-        if self.is_locked_out():
-            self.display_lockout_message()
+        if self.lockout_timer and time.time() < self.lockout_timer:
+            self.incorrect_login_frame = tk.CTkFrame(self, width=390, height=150)
+            self.incorrect_login_frame.place(x=360, y=200)
+
+            # Confirmation Label
+            self.success_signup_label = tk.CTkLabel(self.incorrect_login_frame, text="Account locked. Try again after 30 minutes.")
+            self.success_signup_label.place(x=80, y=30)
+
+            # Button
+            self.back_to_login_button = tk.CTkButton(self.incorrect_login_frame, text="OK", width=100, command=self.retry_to_login)
+            self.back_to_login_button.place(x=140, y=70)
             return
-        
+
         email = self.username_entry.get()
         password = self.password_entry.get()
 
         # HASH PASSWORD
-        # Create a SHA-256 hash object
         hash_object = hashlib.sha256()
-        # Add the salt to the password and hash it
         hash_object.update(password.encode())
-        # Get the hex digest of the hash
         hash_password = hash_object.hexdigest()
         print(hash_password)
 
@@ -2288,67 +2289,48 @@ class App(tk.CTk):
         prof_credential_check = queries.login_professor(email, hash_password)
         admin_credential_check = queries.login_admin(email, hash_password)
 
-        if stud_credential_check == True:
-            # Add login info to student audit trail
-            self.get_student_login_info()
+        if stud_credential_check or prof_credential_check or admin_credential_check:
+            # Reset login attempts on successful login
+            self.login_attempts = 0
+
+            if stud_credential_check:
+                self.get_student_login_info()
+                self.stud_default_main()
+                self.occupation_name.configure(text="STUDENT")
+
+            elif prof_credential_check:
+                self.get_professor_login_info()
+                self.prof_default_main()
+                self.occupation_name.configure(text="PROFESSOR")
+
+            elif admin_credential_check:
+                self.get_admin_login_info()
+                self.admin_default_main()
+                self.occupation_name.configure(text="ADMIN")
+
             # Remove Login Panel
             self.login_frame.place_forget()
-            self.stud_default_main()
-            self.occupation_name.configure(text="STUDENT")
 
-        elif prof_credential_check == True:
-            # Add login info to professor audit trail
-            self.get_professor_login_info()
-            # Remove Login Panel
-            self.login_frame.place_forget()
-            self.prof_default_main()
-            self.occupation_name.configure(text="PROFESSOR")
-
-        elif admin_credential_check == True:
-            # Add login info to admin audit trail
-            self.get_admin_login_info()
-            # Remove Login Panel
-            self.login_frame.place_forget()
-            self.admin_default_main()
-            self.occupation_name.configure(text="ADMIN")
-
-        elif stud_credential_check == False:
-            # Retry Login
-            self.incorrect_credentials()
-        
-        elif prof_credential_check == False:
-            # Retry Login
-            self.incorrect_credentials()
-
-        elif admin_credential_check == False:
-            # Retry Login
-            self.incorrect_credentials()
         else:
-            self.failed_login()
+            # Increment login attempts
+            self.login_attempts += 1
 
-    def is_locked_out(self):
-        # Check if the user is currently locked out based on the lockout timer
-        return time.time() - self.lockout_timer_start < self.lockout_duration
+            # Check if maximum attempts reached
+            if self.login_attempts >= 3:
+                self.incorrect_login_frame = tk.CTkFrame(self, width=390, height=150)
+                self.incorrect_login_frame.place(x=360, y=200)
 
-    def display_lockout_message(self):
-        # Display a message indicating that the user is currently locked out
-        # You can customize this based on your GUI design
-        print("Account locked. Please try again later.")
+                # Confirmation Label
+                self.success_signup_label = tk.CTkLabel(self.incorrect_login_frame, text="Account locked. Try again after 30 minutes.")
+                self.success_signup_label.place(x=80, y=30)
 
-    def successful_login(self, occupation):
-        # (Your successful login code here)
-        pass
-
-    def failed_login(self):
-        # Increment the failed login attempts
-        self.failed_login_attempts += 1
-
-        if self.failed_login_attempts >= 3:
-            # Set the lockout timer if three consecutive failed attempts
-            self.lockout_timer_start = time.time()
-
-        # Retry Login
-        self.incorrect_credentials()
+                # Button
+                self.back_to_login_button = tk.CTkButton(self.incorrect_login_frame, text="OK", width=100, command=self.retry_to_login)
+                self.back_to_login_button.place(x=140, y=70)
+                self.lockout_timer = time.time() + 1800
+            else:
+                # Retry Login
+                self.incorrect_credentials()
 
     # INCORRECT CREDENTIAL NOTIF
     def incorrect_credentials(self):
