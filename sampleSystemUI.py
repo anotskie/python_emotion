@@ -24,6 +24,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 
+
 tk.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
 tk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
 
@@ -43,6 +44,10 @@ class App(tk.CTk):
         self.grid_rowconfigure((0, 1, 2), weight=1)
 
         self.show_login_frame()
+
+        self.failed_login_attempts = 0
+        self.lockout_timer_start = 0
+        self.lockout_duration = 180
 
     # ========== LOGIN FRAME =============
     def show_login_frame(self):
@@ -2145,6 +2150,12 @@ class App(tk.CTk):
 
     # CLICK LOGIN
     def login_event(self):
+
+        # Check if the user is currently locked out
+        if self.is_locked_out():
+            self.display_lockout_message()
+            return
+        
         email = self.username_entry.get()
         password = self.password_entry.get()
 
@@ -2196,6 +2207,32 @@ class App(tk.CTk):
         elif admin_credential_check == False:
             # Retry Login
             self.incorrect_credentials()
+        else:
+            self.failed_login()
+
+    def is_locked_out(self):
+        # Check if the user is currently locked out based on the lockout timer
+        return time.time() - self.lockout_timer_start < self.lockout_duration
+
+    def display_lockout_message(self):
+        # Display a message indicating that the user is currently locked out
+        # You can customize this based on your GUI design
+        print("Account locked. Please try again later.")
+
+    def successful_login(self, occupation):
+        # (Your successful login code here)
+        pass
+
+    def failed_login(self):
+        # Increment the failed login attempts
+        self.failed_login_attempts += 1
+
+        if self.failed_login_attempts >= 3:
+            # Set the lockout timer if three consecutive failed attempts
+            self.lockout_timer_start = time.time()
+
+        # Retry Login
+        self.incorrect_credentials()
 
     # INCORRECT CREDENTIAL NOTIF
     def incorrect_credentials(self):
@@ -2299,56 +2336,75 @@ class App(tk.CTk):
         # Get the hex digest of the hash
         hash_confirm_password = hash_object.hexdigest()
         print(hash_confirm_password)
+        valid_email_formats = ["@gmail.com", "@yahoo.com", "@edu.ph"]
 
-        if hash_password != hash_confirm_password:
-            self.notsamepass_frame = tk.CTkFrame(self, width=300, height=150)
-            self.notsamepass_frame.place(x=450, y=200)
+        if email == "" or firstname == "" or lastname == "" or password == "" or confirmpass == "" or choice == "0":
+                    self.fillup_info_warning_frame = tk.CTkFrame(self, width=300, height=150)
+                    self.fillup_info_warning_frame.place(x=450, y=200)
 
-            # Already saved
-            self.notsame_label = tk.CTkLabel(self.notsamepass_frame, text="Password not identical!")
-            self.notsame_label.place(x=130, y=30)
+                    # Already saved
+                    self.fillup_info_warning_label = tk.CTkLabel(self.fillup_info_warning_frame, text="Please fill out all fields!")
+                    self.fillup_info_warning_label.place(x=100, y=30)
 
-            # Buttons for Saved information
-            self.ok_button = tk.CTkButton(self.notsamepass_frame, text="Ok", command=self.close_pass_confirm, width=100)
-            self.ok_button.place(x=100, y=90)
+                    # Buttons for Saved information
+                    self.ok_button = tk.CTkButton(self.fillup_info_warning_frame, text="Ok", command=self.close_fillup_warning, width=100)
+                    self.ok_button.place(x=100, y=90)
+        elif not any(format in email for format in valid_email_formats):
+                
+                    self.invalid_email_frame = tk.CTkFrame(self, width=500, height=150)
+                    self.invalid_email_frame.place(x=450, y=200)
+
+                        # Invalid email message
+                    self.invalid_email_label = tk.CTkLabel(self.invalid_email_frame, text="Invalid email format. Please use @gmail.com, @yahoo.com, or @edu.ph.")
+                    self.invalid_email_label.place(x=50, y=30)
+
+                        # Ok button
+                    self.ok_button = tk.CTkButton(self.invalid_email_frame, text="Ok", command=self.close_invalid_email, width=100)
+                    self.ok_button.place(x=100, y=90)
+
         else:
-            if email == "" or firstname == "" or lastname == "" or password == "" or confirmpass == "" or choice == "0":
-                self.fillup_info_warning_frame = tk.CTkFrame(self, width=300, height=150)
-                self.fillup_info_warning_frame.place(x=450, y=200)
+
+            if hash_password != hash_confirm_password:
+                self.notsamepass_frame = tk.CTkFrame(self, width=300, height=150)
+                self.notsamepass_frame.place(x=450, y=200)
 
                 # Already saved
-                self.fillup_info_warning_label = tk.CTkLabel(self.fillup_info_warning_frame, text="Please fill out all fields!")
-                self.fillup_info_warning_label.place(x=100, y=30)
+                self.notsame_label = tk.CTkLabel(self.notsamepass_frame, text="Password not identical!")
+                self.notsame_label.place(x=130, y=30)
 
                 # Buttons for Saved information
-                self.ok_button = tk.CTkButton(self.fillup_info_warning_frame, text="Ok", command=self.close_fillup_warning, width=100)
+                self.ok_button = tk.CTkButton(self.notsamepass_frame, text="Ok", command=self.close_pass_confirm, width=100)
                 self.ok_button.place(x=100, y=90)
             else:
-                if choice == "1":
-                    # print("Email: ", email, " First Name: ", firstname, " Last Name: ", lastname, " Password: ", password, " User is a student!")
-                    queries.student_signup(lastname, firstname, email, hash_password)
+                                    
+                    if choice == "1":
+                        # print("Email: ", email, " First Name: ", firstname, " Last Name: ", lastname, " Password: ", password, " User is a student!")
+                        queries.student_signup(lastname, firstname, email, hash_password)
 
-                if choice == "2":
-                    # print("Email: ", email, " First Name: ", firstname, " Last Name: ", lastname, " Password: ", password, " User is a professor!")
-                    queries.prof_signup(lastname, firstname, email, hash_password)
+                    if choice == "2":
+                        # print("Email: ", email, " First Name: ", firstname, " Last Name: ", lastname, " Password: ", password, " User is a professor!")
+                        queries.prof_signup(lastname, firstname, email, hash_password)
 
-                # Confirmation Panel
-                self.success_registration_frame = tk.CTkFrame(self, width=400, height=150)
-                self.success_registration_frame.place(x=360, y=200)
+                    # Confirmation Panel
+                    self.success_registration_frame = tk.CTkFrame(self, width=400, height=150)
+                    self.success_registration_frame.place(x=360, y=200)
 
-                # Confirmation Label
-                self.success_signup_label = tk.CTkLabel(self.success_registration_frame, text="You've successfully registered your account!")
-                self.success_signup_label.place(x=70, y=30)
+                    # Confirmation Label
+                    self.success_signup_label = tk.CTkLabel(self.success_registration_frame, text="You've successfully registered your account!")
+                    self.success_signup_label.place(x=70, y=30)
 
-                # Button
-                self.back_to_login_button = tk.CTkButton(self.success_registration_frame, text="Back to Login", width=200, command=self.return_to_login)
-                self.back_to_login_button.place(x=100, y=70)
+                    # Button
+                    self.back_to_login_button = tk.CTkButton(self.success_registration_frame, text="Back to Login", width=200, command=self.return_to_login)
+                    self.back_to_login_button.place(x=100, y=70)
 
     def close_fillup_warning(self):
         self.fillup_info_warning_frame.place_forget()
 
     def close_pass_confirm(self):
         self.notsamepass_frame.place_forget()
+
+    def close_invalid_email(self):
+        self.invalid_email_frame.destroy()
 
 # ================================= MAIN FUNCTION ====================================
 
