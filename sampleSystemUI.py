@@ -75,12 +75,48 @@ class App(tk.CTk):
 
         self.login_button = tk.CTkButton(self.login_frame, text="Login", command=self.login_event, width=200)
         self.login_button.grid(row=4, column=0, padx=30, pady=(15, 100))
+        
+        # ========== Forgot password =============
+        self.forgot_password_label = tk.CTkLabel(self.login_frame, text="Forgot Password? Click here!", font=tk.CTkFont(size=12), cursor="hand2")
+        self.forgot_password_label.grid(row=5, column=0, padx=30, pady=(10, 10))
+        self.forgot_password_label.bind("<Button-1>", lambda event: self.show_forgot_password_panel())
 
         self.signup_label = tk.CTkLabel(self.login_frame, text="No account yet? Sign up here!")
         self.signup_label.place(x=40, y=275)
 
         self.signup_button = tk.CTkButton(self.login_frame, text="Sign Up", command=self.show_signup_panel, width=200)
         self.signup_button.place(x=30, y=305)
+        
+    # ========== Forgot EVENT =============
+    def show_forgot_password_panel(self):
+        # Create a new frame for forgot password
+        self.forgot_password_frame = tk.CTkFrame(self, corner_radius=0)
+        self.forgot_password_frame.place(x=425, y=110)
+
+        self.forgot_password_label = tk.CTkLabel(self.forgot_password_frame, text="Forgot Password?", font=tk.CTkFont(size=20, weight="bold"))
+        self.forgot_password_label.grid(row=0, column=0, padx=30, pady=(30, 15))
+
+        self.email_entry = tk.CTkEntry(self.forgot_password_frame, width=200, placeholder_text="email")
+        self.email_entry.grid(row=1, column=0, padx=30, pady=(15, 15))
+
+        self.send_reset_button = tk.CTkButton(self.forgot_password_frame, text="Send Reset Email", command=self.send_reset_email, width=200)
+        self.send_reset_button.grid(row=2, column=0, padx=30, pady=(15, 10))
+
+        self.back_to_login_button = tk.CTkButton(self.forgot_password_frame, text="Back to Login", command=self.back_to_login, width=200)
+        self.back_to_login_button.grid(row=3, column=0, padx=30, pady=(10, 100))
+
+        # Hide the login frame
+        self.login_frame.place_forget()
+    
+    def back_to_login(self):
+        # Destroy the forgot password frame and show the login frame
+        self.forgot_password_frame.destroy()
+        self.show_login_frame()
+    
+    def send_reset_email(self):
+        # Implement the logic to send reset email here
+        # This is just a placeholder method, replace it with your actual implementation
+        print("Reset email sent to:", self.email_entry.get())
 
     # ========== SIGN UP PANEL =============
     def show_signup_panel(self):
