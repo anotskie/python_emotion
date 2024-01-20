@@ -8,7 +8,7 @@ import PIL
 import csv
 import pandas as pd
 import matplotlib.pyplot as plt
-
+import mysql.connector
 from PIL import ImageTk, Image
 from tkinter import ttk
 from datetime import datetime, date
@@ -104,7 +104,7 @@ class App(tk.CTk):
         self.email_entry = tk.CTkEntry(self.forgot_password_frame, width=200, placeholder_text="email")
         self.email_entry.grid(row=1, column=0, padx=30, pady=(15, 15))
 
-        self.send_reset_button = tk.CTkButton(self.forgot_password_frame, text="Send Reset Email", command=self.send_reset_email, width=200)
+        self.send_reset_button = tk.CTkButton(self.forgot_password_frame, text="Reset Password", command=self.reset_email, width=200)
         self.send_reset_button.grid(row=2, column=0, padx=30, pady=(15, 10))
 
         self.back_to_login_button = tk.CTkButton(self.forgot_password_frame, text="Back to Login", command=self.back_to_login, width=200)
@@ -112,16 +112,132 @@ class App(tk.CTk):
 
         # Hide the login frame
         self.login_frame.place_forget()
-    
+
     def back_to_login(self):
         # Destroy the forgot password frame and show the login frame
         self.forgot_password_frame.destroy()
         self.show_login_frame()
-    
-    def send_reset_email(self):
-        # Implement the logic to send reset email here
-        # This is just a placeholder method, replace it with your actual implementation
-        print("Reset email sent to:", self.email_entry.get())
+
+    def reset_email(self):
+        # Get the user-entered email
+        self.email = self.email_entry.get()
+
+        # Check if the email exists in the database
+        if self.is_email_in_database(self.email):
+            # Email exists, proceed to the next step
+            self.show_reset_password_panel()
+        else:
+            # Email does not exist, show an error message
+            self.show_email_not_found_error()
+
+
+    def is_email_in_database(self, email):
+        try:
+            with mysql.connector.connect(
+                host="localhost",
+                user="root",
+                password="",
+                database="realtime_test_db"
+            ) as realtime_db:
+                mycursor = realtime_db.cursor()
+
+                # Assuming you have a table named 'user_tbl' with an 'email' column
+                sql = "SELECT COUNT(*) FROM student_tbl WHERE stud_email = %s"
+                values = (email,)
+
+                mycursor.execute(sql, values)
+                result = mycursor.fetchone()[0]
+
+                return result > 0  # If the count is greater than 0, the email exists
+        except mysql.connector.Error as e:
+            print("Error checking email existence in the database:", e)
+            return False
+
+    def show_email_not_found_error(self):
+        
+        self.incorrect_login_frame = tk.CTkFrame(self, width=390, height=150)
+        self.incorrect_login_frame.place(x=360, y=200)
+
+        # Confirmation Label
+        self.success_signup_label = tk.CTkLabel(self.incorrect_login_frame, text="Email not found in the database")
+        self.success_signup_label.place(x=120, y=30)
+        
+        self.back_to_login_button = tk.CTkButton(self.incorrect_login_frame, text="OK", width=100, command=self.retry_to_login)
+        self.back_to_login_button.place(x=140, y=70)
+        # # Destroy any existing error label to prevent overlap
+        # for widget in self.forgot_password_frame.winfo_children():
+        #     if isinstance(widget, tk.CTkLabel) and widget.cget("text") == "Email not found in the database":
+        #         widget.destroy()
+
+        # # Display an error message indicating that the email was not found
+        # error_label = tk.CTkLabel(self.forgot_password_frame, text="Email not found in the database", fg="red")
+        # error_label.grid(row=4, column=0, padx=30, pady=10)
+
+
+
+    def show_reset_password_panel(self):
+        # Implement the logic to show the next panel where the user can input a new password
+        # You may create a new frame or modify the existing one, depending on your UI design
+        # You can also include widgets like entry fields for the new password and a button to confirm the update
+
+        # Example:
+        self.forgot_password_frame.place_forget()
+        self.reset_password_frame = tk.CTkFrame(self, corner_radius=0)
+        self.reset_password_frame.place(x=425, y=110)
+
+        self.new_password_entry = tk.CTkEntry(self.reset_password_frame, width=200, show="*", placeholder_text="New Password")
+        self.new_password_entry.grid(row=0, column=0, padx=30, pady=(30, 15))
+
+        self.confirm_reset_button = tk.CTkButton(self.reset_password_frame, text="Update Password", command=self.confirm_password_update, width=200)
+        self.confirm_reset_button.grid(row=1, column=0, padx=30, pady=(15, 10))
+
+        self.back_to_login_button = tk.CTkButton(self.reset_password_frame, text="Back to Login", command=self.back_to_login, width=200)
+        self.back_to_login_button.grid(row=2, column=0, padx=30, pady=(10, 100))
+
+
+    def confirm_password_update(self):
+        # Get the user-entered new password
+        new_password = self.new_password_entry.get()
+
+        # Update the password in the database
+        if self.update_password(self.email, new_password):
+            # Password update successful, you can show a success message or navigate to the login panel
+            print("Password updated successfully!")
+            self.show_login_frame()
+        else:
+            # Password update failed, you can show an error message or handle accordingly
+            print("Password update failed.")
+
+    def update_password(self, email, new_password):
+        try:
+            with mysql.connector.connect(
+                host="localhost",
+                user="root",
+                password="",
+                database="realtime_test_db"
+            ) as realtime_db:
+                mycursor = realtime_db.cursor()
+
+                # Hash the new password before updating (using SHA-256)
+                hash_object = hashlib.sha256()
+                hash_object.update(new_password.encode())
+                hashed_password = hash_object.hexdigest()
+
+                # Assuming you have a table named 'student_tbl' with columns 'stud_email' and 'stud_password'
+                sql = "UPDATE student_tbl SET stud_password = %s WHERE stud_email = %s"
+                values = (hashed_password, email)
+
+                mycursor.execute(sql, values)
+                realtime_db.commit()
+
+                return True  # Password update successful
+        except mysql.connector.Error as e:
+            print("Error updating password in the database:", e)
+            return False
+
+    # def show_login_frame(self):
+    #     # Implement the logic to show the login frame
+    #     pass
 
     # ========== SIGN UP PANEL =============
     def show_signup_panel(self):
