@@ -10,14 +10,16 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import mysql.connector
 from PIL import ImageTk, Image
-from tkinter import ttk
+from tkinter import ttk, filedialog
 from datetime import datetime, date
 from matplotlib.backends.backend_pdf import PdfPages
 import time
+import operator
 # Custom Library
 import queries
 import final_emotioncam_teams
 import final_eyegazecam_teams
+import logging
 
 # Libraries to connect to Teams via Selenium
 from selenium import webdriver
@@ -1180,8 +1182,8 @@ class App(tk.CTk):
         self.main_frame_report_STUD = tk.CTkFrame(self, width=920, height=600, corner_radius=50)
         self.main_frame_report_STUD.place(x=180, y=0)
 
-        self.stud_print_eyegaze_tbl = tk.CTkButton(self.main_frame_report_STUD, text="Print")
-        self.stud_print_eyegaze_tbl.place(x=180, y=50)
+        self.print_button = tk.CTkButton(self.main_frame_report_STUD, text="Print Eyegaze Report", command=self.stud_download_eyegaze)
+        self.print_button.place(x=50, y=400)
 
         self.eyegaze_table_frame = tk.CTkFrame(self.main_frame_report_STUD, width=600, height=350)
         self.eyegaze_table_frame.place(x=180, y=100)
@@ -1247,42 +1249,59 @@ class App(tk.CTk):
         self.main_frame_report_PROF = tk.CTkFrame(self, width=920, height=600, corner_radius=50)
         self.main_frame_report_PROF.place(x=180, y=0)
 
+        self.print_button = tk.CTkButton(self.main_frame_report_PROF, text="Print Eyegaze Report", command=self.download_eyegaze)
+        self.print_button.place(x=50, y=400)
+
+        self.print_button = tk.CTkButton(self.main_frame_report_PROF, text="Print Emotion Report", command=self.download_emotions)
+        self.print_button.place(x=200, y=400)
+
+        self.print_button = tk.CTkButton(self.main_frame_report_PROF, text="Delete Eyegaze Report", command=self.delete_eyegaze_tbl)
+        self.print_button.place(x=400, y=400)
+
+        self.print_button = tk.CTkButton(self.main_frame_report_PROF, text="Delete Emotion Report", command=self.delete_emotions_tbl)
+        self.print_button.place(x=750, y=400)
+
+
         self.report_tabview = tk.CTkTabview(self.main_frame_report_PROF, width=800, height=350)
         self.report_tabview.place(x=110, y=30)
         self.report_tabview.add("Eye Gaze Report")
         self.report_tabview.add("Emotion Report")
-
+        self.sort_order = 'asc'
         # PROFESSOR EMOTION TABLE
+
         self.emotion_table = ttk.Treeview(self.report_tabview.tab("Emotion Report"), columns=('number', 'emotion', 'date', 'time', 'studname'), show="headings")
         self.emotion_table.place(x=10, y=60)
 
         self.emotion_table.heading('number', text="No.")
         self.emotion_table.heading('emotion', text="Emotion")
-        self.emotion_table.heading('date', text="Date Captured")
-        self.emotion_table.heading('time', text="Time Captured")
-        self.emotion_table.heading('studname', text="Student Name")
+        self.emotion_table.heading('date', text="Date Captured",command=self.sort_emotion_time)
+        self.emotion_table.heading('time', text="Time Captured",command=self.sort_emotion_time)
+        self.emotion_table.heading('studname', text="Student Name",command=self.sort_emotion_name)
 
-        self.emotion_table.column('number', anchor="center")
-        self.emotion_table.column('emotion', anchor="center")
-        self.emotion_table.column('date', anchor="center")
-        self.emotion_table.column('time', anchor="center")
-        self.emotion_table.column('studname', anchor="center")
+        self.emotion_table.column('number', width=50, anchor="center")
+        self.emotion_table.column('emotion', width=150, anchor="center")
+        self.emotion_table.column('date', width=150, anchor="center")
+        self.emotion_table.column('time', width=150, anchor="center")
+        self.emotion_table.column('studname', width=200, anchor="center")  # Adjust the width as needed
+
 
         # PROFESSOR EYE GAZE TABLE
+        
         self.eyegaze_table = ttk.Treeview(self.report_tabview.tab("Eye Gaze Report"), columns=('number', 'eyegaze', 'date', 'time', 'studname'), show="headings")
-        self.eyegaze_table.place(x=10, y=60)
+        self.eyegaze_table.place(x=0, y=60)
 
         self.eyegaze_table.heading('number', text="No.")
         self.eyegaze_table.heading('eyegaze', text="Level of Engagement")
-        self.eyegaze_table.heading('date', text="Date Captured")
-        self.eyegaze_table.heading('time', text="Time Captured")
-        self.eyegaze_table.heading('studname', text="Student Name")
+        self.eyegaze_table.heading('date', text="Date Captured",command=self.sort_eyegaze_time)
+        self.eyegaze_table.heading('time', text="Time Captured", command=self.sort_eyegaze_time)
+        self.eyegaze_table.heading('studname', text="Student Name", command=self.sort_eyegaze_name)
 
-        self.eyegaze_table.column('number', anchor="center")
-        self.eyegaze_table.column('eyegaze', anchor="center")
-        self.eyegaze_table.column('date', anchor="center")
-        self.eyegaze_table.column('time', anchor="center")
-        self.eyegaze_table.column('studname', anchor="center")
+        self.eyegaze_table.column('number', width=50, anchor="center")
+        self.eyegaze_table.column('eyegaze', width=150, anchor="center")
+        self.eyegaze_table.column('date', width=150, anchor="center")
+        self.eyegaze_table.column('time', width=150, anchor="center")
+        self.eyegaze_table.column('studname', width=200, anchor="center")  # Adjust the width as needed
+
 
         # Modern look for table
         style = ttk.Style()
@@ -1294,6 +1313,128 @@ class App(tk.CTk):
 
         self.show_eyegaze_table()
         self.show_emotion_table()
+
+    def sort_eyegaze_time(self):
+        data = []
+
+        for item in self.eyegaze_table.get_children(''):
+            time_value = self.eyegaze_table.item(item, 'values')[2]
+
+            # Check if the time_value contains time information
+            if ' ' in time_value:
+                format_string = "%Y-%m-%d %H:%M:%S"
+            else:
+                format_string = "%Y-%m-%d"
+
+            data.append((datetime.strptime(time_value, format_string), item))
+
+        if self.sort_order == 'asc':
+            data.sort(key=lambda x: x[0])
+            self.sort_order = 'desc'
+        else:
+            data.sort(key=lambda x: x[0], reverse=True)
+            self.sort_order = 'asc'
+
+        for index, (_, item) in enumerate(data, start=1):
+            self.eyegaze_table.move(item, '', index)
+
+        # Update the table view
+        self.eyegaze_table.update()
+    
+    def sort_emotion_time(self):
+        data = []
+
+        for item in self.emotion_table.get_children(''):
+            time_value = self.emotion_table.item(item, 'values')[2]
+
+            # Check if the time_value contains time information
+            if ' ' in time_value:
+                format_string = "%Y-%m-%d %H:%M:%S"
+            else:
+                format_string = "%Y-%m-%d"
+
+            data.append((datetime.strptime(time_value, format_string), item))
+
+        if self.sort_order == 'asc':
+            data.sort(key=lambda x: x[0])
+            self.sort_order = 'desc'
+        else:
+            data.sort(key=lambda x: x[0], reverse=True)
+            self.sort_order = 'asc'
+
+        for index, (_, item) in enumerate(data, start=1):
+            self.emotion_table.move(item, '', index)
+
+        # Update the table view
+        self.emotion_table.update()
+    
+    def sort_eyegaze_name(self):
+        data = []
+
+        for item in self.eyegaze_table.get_children(''):
+            studname_value = self.eyegaze_table.item(item, 'values')[4]
+            data.append((studname_value, item))
+
+        if self.sort_order == 'asc':
+            data.sort(key=lambda x: x[0])
+            self.sort_order = 'desc'
+        else:
+            data.sort(key=lambda x: x[0], reverse=True)
+            self.sort_order = 'asc'
+
+        for index, (_, item) in enumerate(data, start=1):
+            self.eyegaze_table.move(item, '', index)
+
+        # Update the table view
+        self.eyegaze_table.update()
+
+    def sort_emotion_name(self):
+        data = []
+
+        for item in self.emotion_table.get_children(''):
+            studname_value = self.emotion_table.item(item, 'values')[4]
+            data.append((studname_value, item))
+
+        if self.sort_order == 'asc':
+            data.sort(key=lambda x: x[0])
+            self.sort_order = 'desc'
+        else:
+            data.sort(key=lambda x: x[0], reverse=True)
+            self.sort_order = 'asc'
+
+        for index, (_, item) in enumerate(data, start=1):
+            self.emotion_table.move(item, '', index)
+
+        # Update the table view
+        self.emotion_table.update()
+
+    def delete_eyegaze_tbl(self):
+        queries.truncate_eyegaze()
+        
+        self.incorrect_login_frame = tk.CTkFrame(self, width=390, height=150)
+        self.incorrect_login_frame.place(x=360, y=200)
+
+        # Confirmation Label
+        self.success_signup_label = tk.CTkLabel(self.incorrect_login_frame, text="Eyegaze Report is now Cleared")
+        self.success_signup_label.place(x=120, y=30)
+        
+        self.back_to_login_button = tk.CTkButton(self.incorrect_login_frame, text="OK", width=100, command=self.prof_sidebar_report_clicked)
+        self.back_to_login_button.place(x=140, y=70)
+
+
+    def delete_emotions_tbl(self):
+        queries.truncate_emotions()
+
+        self.incorrect_login_frame = tk.CTkFrame(self, width=390, height=150)
+        self.incorrect_login_frame.place(x=360, y=200)
+
+        # Confirmation Label
+        self.success_signup_label = tk.CTkLabel(self.incorrect_login_frame, text="Emotions Report is now Cleared")
+        self.success_signup_label.place(x=120, y=30)
+        
+        self.back_to_login_button = tk.CTkButton(self.incorrect_login_frame, text="OK", width=100, command=self.prof_sidebar_report_clicked)
+        self.back_to_login_button.place(x=140, y=70)
+
 
     # DISPLAY EMOTION RECORDS TO TABLE
     def show_emotion_table(self):
@@ -1316,7 +1457,7 @@ class App(tk.CTk):
     def show_eyegaze_table(self):
         # CSV Data holder from database
         queries.eyegaze_db_to_csv()
-
+    
         # Open Eye Gaze CSV records then display to table
         with open(r'csv/eyegaze_db_to_csv.csv') as csv_file:
             reader = csv.DictReader(csv_file, delimiter=',')
@@ -1328,6 +1469,50 @@ class App(tk.CTk):
                 stud_fullname = row['student_FullName']
                 self.eyegaze_table.insert("", "end", values=(count, eyegaze_name, date_captured, time_captured, stud_fullname))
                 count = count+1
+
+    def download_eyegaze(self):
+        # Ask user for the file path to save the CSV file
+        file_path = filedialog.asksaveasfilename(defaultextension=".csv", filetypes=[("CSV files", "*.csv")])
+
+        if file_path:
+            # Open Eye Gaze CSV records then save to the chosen file path
+            with open(r'csv/eyegaze_db_to_csv.csv') as csv_file:
+                # Read the content of the CSV file
+                csv_content = csv_file.read()
+
+            # Save the content to the chosen file path
+            with open(file_path, 'w') as save_file:
+                save_file.write(csv_content)
+
+    def download_emotions(self):
+        # Ask user for the file path to save the CSV file
+        file_path = filedialog.asksaveasfilename(defaultextension=".csv", filetypes=[("CSV files", "*.csv")])
+
+        if file_path:
+            # Open Eye Gaze CSV records then save to the chosen file path
+            with open(r'csv/emotion_db_to_csv.csv') as csv_file:
+                # Read the content of the CSV file
+                csv_content = csv_file.read()
+
+            # Save the content to the chosen file path
+            with open(file_path, 'w') as save_file:
+                save_file.write(csv_content)
+
+    def stud_download_eyegaze(self):
+        # Ask user for the file path to save the CSV file
+        file_path = filedialog.asksaveasfilename(defaultextension=".csv", filetypes=[("CSV files", "*.csv")])
+
+        if file_path:
+            # Open Eye Gaze CSV records then save to the chosen file path
+            with open(r'csv/student_eyegaze_tbl.csv') as csv_file:
+                # Read the content of the CSV file
+                csv_content = csv_file.read()
+
+            # Save the content to the chosen file path
+            with open(file_path, 'w') as save_file:
+                save_file.write(csv_content)
+    
+
 
     # Open STUDENT SETTINGS PANEL
     def stud_sidebar_settings_clicked(self):
@@ -2287,7 +2472,7 @@ class App(tk.CTk):
 
         stud_credential_check = queries.login_student(email, hash_password)
         prof_credential_check = queries.login_professor(email, hash_password)
-        admin_credential_check = queries.login_admin(email, hash_password)
+        admin_credential_check = queries.login_admin(email, password)
 
         if stud_credential_check or prof_credential_check or admin_credential_check:
             # Reset login attempts on successful login

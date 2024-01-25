@@ -4,6 +4,7 @@ import os
 import csv
 import final_emotioncam_teams as emotioncam
 import final_eyegazecam_teams as eyegazecam
+import logging
 
 # REGISTER STUDENT ACCOUNT
 def student_signup(lastname, firstname, email, password):
@@ -466,6 +467,13 @@ def eyegaze_db_to_csv():
                 '''
     mycursor.execute(select_sql)
 
+    # # Print headers
+    # headers = [i[0] for i in mycursor.description]
+    # print(headers)
+    #   # Print data
+    # for row in mycursor:
+    #   print(row)
+
     with open(r"csv/eyegaze_db_to_csv.csv", "w", newline='') as csv_file:
       csv_writer = csv.writer(csv_file)
       csv_writer.writerow([i[0] for i in mycursor.description]) # write headers
@@ -476,6 +484,42 @@ def eyegaze_db_to_csv():
     print("Error reading data from MySQL table", e)
   finally:
     realtime_db.close()
+
+def sort_time():
+  realtime_db = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="",
+        database="realtime_test_db"
+        # host="sql12.freesqldatabase.com",
+        # user="sql12667483",
+        # password="WIpJivQd9R",
+        # database="sql12667483"
+    )
+    
+  try:
+        mycursor = realtime_db.cursor()
+        select_sql = '''
+            SELECT
+                eyegaze_tbl.eyegaze_name,
+                eyegaze_tbl.eyegaze_date_captured,
+                eyegaze_tbl.eyegaze_time_captured,
+                CONCAT(student_tbl.stud_LastName, ", ", student_tbl.stud_FirstName) AS student_FullName
+            FROM
+                eyegaze_tbl
+            INNER JOIN
+                student_tbl ON eyegaze_tbl.eyegaze_student_ID = student_tbl.student_ID
+            ORDER BY
+                eyegaze_tbl.eyegaze_time_captured ASC;
+        '''
+        mycursor.execute(select_sql)
+        
+        # Rest of your code here
+        
+  finally:
+        realtime_db.close()
+
+
 
 # GET STUDENT FIRST NAME
 def get_stud_name(email):
@@ -1041,3 +1085,55 @@ def update_prof_password(password, email):
 # Function to update ADMIN DETAILS
 def update_admin_info():
   pass
+
+def truncate_eyegaze():
+    try:
+        realtime_db = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="",
+            database="realtime_test_db"
+        )
+
+        cursor = realtime_db.cursor()
+
+        # SQL to truncate table
+        sql = "TRUNCATE TABLE eyegaze_tbl"
+
+        cursor.execute(sql)
+        realtime_db.commit()
+
+        print("Table eyegaze_tbl truncated successfully")
+
+    except mysql.connector.Error as e:
+        print(f"Error truncating table: {e}")
+
+    finally:
+        cursor.close()
+        realtime_db.close()
+
+def truncate_emotions():
+    try:
+        realtime_db = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="",
+            database="realtime_test_db"
+        )
+
+        cursor = realtime_db.cursor()
+
+        # SQL to truncate table
+        sql = "TRUNCATE TABLE emotion_tbl"
+
+        cursor.execute(sql)
+        realtime_db.commit()
+
+        print("Table emotion_tbl truncated successfully")
+
+    except mysql.connector.Error as e:
+        print(f"Error truncating table: {e}")
+
+    finally:
+        cursor.close()
+        realtime_db.close()
