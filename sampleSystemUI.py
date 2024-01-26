@@ -144,17 +144,116 @@ class App(tk.CTk):
             ) as realtime_db:
                 mycursor = realtime_db.cursor()
 
-                # Assuming you have a table named 'user_tbl' with an 'email' column
-                sql = "SELECT COUNT(*) FROM student_tbl WHERE stud_email = %s"
-                values = (email,)
+                # Check 'student_tbl'
+                sql_student = "SELECT COUNT() FROM student_tbl WHERE stud_email = %s"
+                values_student = (email,)
 
-                mycursor.execute(sql, values)
-                result = mycursor.fetchone()[0]
+                mycursor.execute(sql_student, values_student)
+                result_student = mycursor.fetchone()[0]
 
-                return result > 0  # If the count is greater than 0, the email exists
+                # Check 'user_tbl'
+                sql_user = "SELECT COUNT() FROM professor_tbl WHERE professor_Email = %s"
+                values_user = (email,)
+
+                mycursor.execute(sql_user, values_user)
+                result_user = mycursor.fetchone()[0]
+
+                # Return True if email exists in either table
+                return result_student > 0 or result_user > 0
         except mysql.connector.Error as e:
             print("Error checking email existence in the database:", e)
             return False
+
+    def show_email_not_found_error(self):
+        
+        self.incorrect_login_frame = tk.CTkFrame(self, width=390, height=150)
+        self.incorrect_login_frame.place(x=360, y=200)
+
+        # Confirmation Label
+        self.success_signup_label = tk.CTkLabel(self.incorrect_login_frame, text="Email not found in the database")
+        self.success_signup_label.place(x=120, y=30)
+        
+        self.back_to_login_button = tk.CTkButton(self.incorrect_login_frame, text="OK", width=100, command=self.retry_to_login)
+        self.back_to_login_button.place(x=140, y=70)
+        # # Destroy any existing error label to prevent overlap
+        # for widget in self.forgot_password_frame.winfo_children():
+        #     if isinstance(widget, tk.CTkLabel) and widget.cget("text") == "Email not found in the database":
+        #         widget.destroy()
+
+        # # Display an error message indicating that the email was not found
+        # error_label = tk.CTkLabel(self.forgot_password_frame, text="Email not found in the database", fg="red")
+        # error_label.grid(row=4, column=0, padx=30, pady=10)
+
+
+
+    def show_forgot_password_panel(self):
+        # Create a new frame for forgot password
+        self.forgot_password_frame = tk.CTkFrame(self, corner_radius=0)
+        self.forgot_password_frame.place(x=425, y=110)
+
+        self.forgot_password_label = tk.CTkLabel(self.forgot_password_frame, text="Forgot Password?", font=tk.CTkFont(size=20, weight="bold"))
+        self.forgot_password_label.grid(row=0, column=0, padx=30, pady=(30, 15))
+
+        self.email_entry = tk.CTkEntry(self.forgot_password_frame, width=200, placeholder_text="email")
+        self.email_entry.grid(row=1, column=0, padx=30, pady=(15, 15))
+
+        self.send_reset_button = tk.CTkButton(self.forgot_password_frame, text="Reset Password", command=self.reset_email, width=200)
+        self.send_reset_button.grid(row=2, column=0, padx=30, pady=(15, 10))
+
+        self.back_to_login_button = tk.CTkButton(self.forgot_password_frame, text="Back to Login", command=self.back_to_login, width=200)
+        self.back_to_login_button.grid(row=3, column=0, padx=30, pady=(10, 100))
+
+        # Hide the login frame
+        self.login_frame.place_forget()
+
+    def back_to_login(self):
+        # Destroy the forgot password frame and show the login frame
+        self.forgot_password_frame.destroy()
+        self.show_login_frame()
+
+    def reset_email(self):
+        # Get the user-entered email
+        self.email = self.email_entry.get()
+
+        # Check if the email exists in the database
+        if self.is_email_in_database(self.email):
+            # Email exists, proceed to the next step
+            self.show_reset_password_panel()
+        else:
+            # Email does not exist, show an error message
+            self.show_email_not_found_error()
+
+
+    def is_email_in_database(self, email):
+        try:
+            with mysql.connector.connect(
+                host="localhost",
+                user="root",
+                password="",
+                database="realtime_test_db"
+            ) as realtime_db:
+                mycursor = realtime_db.cursor()
+
+                # Check 'student_tbl'
+                sql_student = "SELECT COUNT(*) FROM student_tbl WHERE stud_email = %s"
+                values_student = (email,)
+
+                mycursor.execute(sql_student, values_student)
+                result_student = mycursor.fetchone()[0]
+
+                # Check 'user_tbl'
+                sql_user = "SELECT COUNT(*) FROM professor_tbl WHERE professor_Email = %s"
+                values_user = (email,)
+
+                mycursor.execute(sql_user, values_user)
+                result_user = mycursor.fetchone()[0]
+
+                # Return True if email exists in either table
+                return result_student > 0 or result_user > 0
+        except mysql.connector.Error as e:
+            print("Error checking email existence in the database:", e)
+            return False
+
 
     def show_email_not_found_error(self):
         
@@ -185,26 +284,65 @@ class App(tk.CTk):
 
         self.new_password_entry = tk.CTkEntry(self.reset_password_frame, width=200, show="*", placeholder_text="New Password")
         self.new_password_entry.grid(row=0, column=0, padx=30, pady=(30, 15))
+        
+        self.confirm_password_entry = tk.CTkEntry(self.reset_password_frame, width=200, show="*", placeholder_text="Confirm New Password")
+        self.confirm_password_entry.grid(row=1, column=0, padx=30, pady=(0, 15))
+
+        self.show_password_var = tk.BooleanVar()
+        self.show_password_var.set(False)
+        self.show_password = tk.CTkCheckBox(self.reset_password_frame, text="Show Password", checkbox_width=15, checkbox_height=15, variable=self.show_password_var, command=self.toggle_forgot_password_visibility)
+        self.show_password.grid(row=2, column=0, padx=30, pady=(0, 10))
 
         self.confirm_reset_button = tk.CTkButton(self.reset_password_frame, text="Update Password", command=self.confirm_password_update, width=200)
-        self.confirm_reset_button.grid(row=1, column=0, padx=30, pady=(15, 10))
+        self.confirm_reset_button.grid(row=3, column=0, padx=30, pady=(15, 10))
 
         self.back_to_login_button = tk.CTkButton(self.reset_password_frame, text="Back to Login", command=self.back_to_login, width=200)
-        self.back_to_login_button.grid(row=2, column=0, padx=30, pady=(10, 100))
+        self.back_to_login_button.grid(row=4, column=0, padx=30, pady=(10, 100))
+
+
+    def toggle_forgot_password_visibility(self):
+        if self.show_password_var.get():
+            self.new_password_entry.configure(show="")
+            self.confirm_password_entry.configure(show="")
+        else:
+            self.new_password_entry.configure(show="")
+            self.confirm_password_entry.configure(show="")
 
 
     def confirm_password_update(self):
-        # Get the user-entered new password
+        # Get the user-entered new password and confirm new password
         new_password = self.new_password_entry.get()
+        confirm_password = self.confirm_password_entry.get()
 
-        # Update the password in the database
-        if self.update_password(self.email, new_password):
-            # Password update successful, you can show a success message or navigate to the login panel
-            print("Password updated successfully!")
-            self.show_login_frame()
+        # Check if the new password and confirm password match
+        if new_password == confirm_password:
+            # Update the password in the database
+            if self.update_password(self.email, new_password):
+                self.incorrect_login_frame = tk.CTkFrame(self, width=390, height=150)
+                self.incorrect_login_frame.place(x=360, y=200)
+
+                # Confirmation Label
+                self.success_signup_label = tk.CTkLabel(self.incorrect_login_frame, text="Password updated successfully!")
+                self.success_signup_label.place(x=120, y=30)
+                
+                self.back_to_login_button = tk.CTkButton(self.incorrect_login_frame, text="OK", width=100, command=self.retry_to_login)
+                self.back_to_login_button.place(x=140, y=70)
+                print("Password updated successfully!")
+                # self.show_login_frame()
+            else:
+                # Password update failed, you can show an error message or handle accordingly
+                print("Password update failed.")
         else:
-            # Password update failed, you can show an error message or handle accordingly
-            print("Password update failed.")
+            # Passwords do not match, show an error message or handle accordingly
+            self.incorrect_login_frame = tk.CTkFrame(self, width=390, height=150)
+            self.incorrect_login_frame.place(x=360, y=200)
+
+            # Confirmation Label
+            self.success_signup_label = tk.CTkLabel(self.incorrect_login_frame, text="Password Do not Match!")
+            self.success_signup_label.place(x=120, y=30)
+            
+            self.back_to_login_button = tk.CTkButton(self.incorrect_login_frame, text="OK", width=100, command=self.retry_to_login)
+            self.back_to_login_button.place(x=140, y=70)
 
     def update_password(self, email, new_password):
         try:
@@ -221,11 +359,18 @@ class App(tk.CTk):
                 hash_object.update(new_password.encode())
                 hashed_password = hash_object.hexdigest()
 
-                # Assuming you have a table named 'student_tbl' with columns 'stud_email' and 'stud_password'
-                sql = "UPDATE student_tbl SET stud_password = %s WHERE stud_email = %s"
-                values = (hashed_password, email)
+                # Update 'student_tbl'
+                sql_student = "UPDATE student_tbl SET stud_password = %s WHERE stud_email = %s"
+                values_student = (hashed_password, email)
 
-                mycursor.execute(sql, values)
+                mycursor.execute(sql_student, values_student)
+
+                # Update 'professor_tbl'
+                sql_professor = "UPDATE professor_tbl SET professor_Password = %s WHERE professor_Email = %s"
+                values_professor = (hashed_password, email)
+
+                mycursor.execute(sql_professor, values_professor)
+
                 realtime_db.commit()
 
                 return True  # Password update successful
@@ -2472,7 +2617,7 @@ class App(tk.CTk):
 
         stud_credential_check = queries.login_student(email, hash_password)
         prof_credential_check = queries.login_professor(email, hash_password)
-        admin_credential_check = queries.login_admin(email, password)
+        admin_credential_check = queries.login_admin(email, hash_password)
 
         if stud_credential_check or prof_credential_check or admin_credential_check:
             # Reset login attempts on successful login
@@ -2591,6 +2736,7 @@ class App(tk.CTk):
             selected = "Option 'professor' was selected!"
         
         print(selected)
+        
 
     # SIGN UP SUBMISSION
     def submit_registration(self):
@@ -2658,28 +2804,49 @@ class App(tk.CTk):
                 # Buttons for Saved information
                 self.ok_button = tk.CTkButton(self.notsamepass_frame, text="Ok", command=self.close_pass_confirm, width=100)
                 self.ok_button.place(x=100, y=90)
+
             else:
                                     
                     if choice == "1":
-                        # print("Email: ", email, " First Name: ", firstname, " Last Name: ", lastname, " Password: ", password, " User is a student!")
-                        queries.student_signup(lastname, firstname, email, hash_password)
+                        # Code for student registration
+                        if queries.student_signup(lastname, firstname, email, hash_password):
+                            # Registration successful
+                            self.display_success()
+                        else:
+                            # Email already exists, display an error
+                            self.display_error_frame()
 
-                    if choice == "2":
-                        # print("Email: ", email, " First Name: ", firstname, " Last Name: ", lastname, " Password: ", password, " User is a professor!")
-                        queries.prof_signup(lastname, firstname, email, hash_password)
+                    elif choice == "2":
+                        # Code for professor registration
+                        if queries.prof_signup(lastname, firstname, email, hash_password):
+                            self.display_success()
+                        else:
+                            self.display_error_frame()
 
-                    # Confirmation Panel
-                    self.success_registration_frame = tk.CTkFrame(self, width=400, height=150)
-                    self.success_registration_frame.place(x=360, y=200)
+    def display_success(self):
+        self.success_registration_frame = tk.CTkFrame(self, width=400, height=150)
+        self.success_registration_frame.place(x=360, y=200)
 
-                    # Confirmation Label
-                    self.success_signup_label = tk.CTkLabel(self.success_registration_frame, text="You've successfully registered your account!")
-                    self.success_signup_label.place(x=70, y=30)
+        # Confirmation Label
+        self.success_signup_label = tk.CTkLabel(self.success_registration_frame, text="You've successfully registered your account!")
+        self.success_signup_label.place(x=70, y=30)
 
-                    # Button
-                    self.back_to_login_button = tk.CTkButton(self.success_registration_frame, text="Back to Login", width=200, command=self.return_to_login)
-                    self.back_to_login_button.place(x=100, y=70)
+        # Button
+        self.back_to_login_button = tk.CTkButton(self.success_registration_frame, text="Back to Login", width=200, command=self.return_to_login)
+        self.back_to_login_button.place(x=100, y=70)
 
+    def display_error_frame(self):
+        self.error_registration_frame = tk.CTkFrame(self, width=400, height=150)
+        self.error_registration_frame.place(x=360, y=200)
+
+        # Confirmation Label
+        self.error_signup_label = tk.CTkLabel(self.error_registration_frame, text="Email already exists")
+        self.error_signup_label.place(x=70, y=30)
+
+        # Button
+        self.back_to_login_button = tk.CTkButton(self.error_registration_frame, text="Back to Login", width=200, command=self.return_to_login)
+        self.back_to_login_button.place(x=100, y=70)
+        
     def close_fillup_warning(self):
         self.fillup_info_warning_frame.place_forget()
 
@@ -2688,6 +2855,7 @@ class App(tk.CTk):
 
     def close_invalid_email(self):
         self.invalid_email_frame.destroy()
+        
 
 # ================================= MAIN FUNCTION ====================================
 

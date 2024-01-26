@@ -5,60 +5,82 @@ import csv
 import final_emotioncam_teams as emotioncam
 import final_eyegazecam_teams as eyegazecam
 import logging
+from mysql.connector import Error
 
 # REGISTER STUDENT ACCOUNT
 def student_signup(lastname, firstname, email, password):
-  realtime_db = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password="",
-  database="realtime_test_db"
-  # host="sql12.freesqldatabase.com",
-  # user="sql12667483",
-  # password="WIpJivQd9R",
-  # database="sql12667483"
-)
-  try:
-    mycursor = realtime_db.cursor()
+    try:
+        # Create a connection and cursor using the 'with' statement
+        with mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="",
+            database="realtime_test_db"
+        ) as realtime_db, realtime_db.cursor() as mycursor:
 
-    sql = '''
-            INSERT INTO student_tbl (stud_LastName, stud_FirstName, stud_YearLevel, stud_Email, stud_Password) VALUES (%s, %s, %s, %s, %s)
-          '''
-    values = (f'{lastname}', f'{firstname}', '1', f'{email}', f'{password}')
-    mycursor.execute(sql, values)
+            # Check if email already exists
+            check_email_sql = "SELECT * FROM student_tbl WHERE stud_Email = %s"
+            mycursor.execute(check_email_sql, (email,))
+            existing_student = mycursor.fetchone()
 
-    realtime_db.commit()
-  except mysql.connector.Error as e:
-    print("Error reading data from MySQL table", e)
-  finally:
-    realtime_db.close()
+            if existing_student:
+                print("Email already exists. Please choose a different email.")
+                return False
+
+            # Insert new student record
+            insert_sql = '''
+                INSERT INTO student_tbl (stud_LastName, stud_FirstName, stud_YearLevel, stud_Email, stud_Password) 
+                VALUES (%s, %s, %s, %s, %s)
+            '''
+            values = (lastname, firstname, '1', email, password)
+            mycursor.execute(insert_sql, values)
+
+            realtime_db.commit()
+            print("Student successfully added.")
+
+            return True  # Indicate successful registration
+
+    except Error as e:
+        print("Error interacting with MySQL database:", e)
+        return False  # Indicate failure
 
 # REGISTER PROFESSOR ACCOUNT
 def prof_signup(lastname, firstname, email, password):
-  realtime_db = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password="",
-  database="realtime_test_db"
-  # host="sql12.freesqldatabase.com",
-  # user="sql12667483",
-  # password="WIpJivQd9R",
-  # database="sql12667483"
-)
-  try:
-    mycursor = realtime_db.cursor()
+    try:
+        # Create a connection and cursor using the 'with' statement
+        with mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="",
+            database="realtime_test_db"
+        ) as realtime_db, realtime_db.cursor() as mycursor:
 
-    sql = '''
-            INSERT INTO professor_tbl (professor_LastName, professor_FirstName, professor_desc, professor_Email, professor_Password) VALUES (%s, %s, %s, %s, %s)
-          '''
-    values = (f'{lastname}', f'{firstname}', '', f'{email}', f'{password}')
-    mycursor.execute(sql, values)
+            # Check if email already exists
+            check_email_sql = "SELECT * FROM professor_tbl WHERE professor_Email = %s"
+            mycursor.execute(check_email_sql, (email,))
+            existing_professor = mycursor.fetchone()
 
-    realtime_db.commit()
-  except mysql.connector.Error as e:
-    print("Error reading data from MySQL table", e)
-  finally:
-    realtime_db.close()
+            if existing_professor:
+                print("Email already exists. Please choose a different email.")
+                return False
+
+            # Insert new professor record
+            insert_sql = '''
+                INSERT INTO professor_tbl (professor_LastName, professor_FirstName, professor_desc, professor_Email, professor_Password) 
+                VALUES (%s, %s, %s, %s, %s)
+            '''
+            values = (lastname, firstname, '', email, password)
+            mycursor.execute(insert_sql, values)
+
+            realtime_db.commit()
+            print("Professor successfully added.")
+
+            return True  # Indicate successful registration
+
+    except Error as e:
+        print("Error interacting with MySQL database:", e)
+        return False  # Indicate failure
+
 
 # CHECK STUDENT CREDENTIALS
 def login_student(email, password):
