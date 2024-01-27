@@ -1988,6 +1988,8 @@ class App(tk.CTk):
         self.saved_info_frame.place_forget()
         self.save_changes_frame.place_forget()
         self.stud_edit_fields_frame.place_forget()
+        self.stud_sidebar_settings_clicked()
+        
 
     # Saved
     def stud_profile_saved_clicked(self):
@@ -2299,6 +2301,7 @@ class App(tk.CTk):
         self.saved_info_frame.place_forget()
         self.save_changes_frame.place_forget()
         self.prof_edit_fields_frame.place_forget()
+        self.prof_sidebar_settings_clicked()
 
     # Saved
     def prof_profile_saved_clicked(self):
@@ -2601,6 +2604,7 @@ class App(tk.CTk):
         self.saved_info_frame.place_forget()
         self.save_changes_frame.place_forget()
         self.admin_edit_fields_acctframe.place_forget()
+        self.admin_sidebar_settings_clicked()
 
     # Saved
     def admin_acct_saved_clicked(self):
