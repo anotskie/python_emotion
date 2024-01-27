@@ -10,7 +10,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import mysql.connector
 from PIL import ImageTk, Image
-from tkinter import ttk, filedialog
+from tkinter import ttk, filedialog, messagebox
 from datetime import datetime, date
 from matplotlib.backends.backend_pdf import PdfPages
 import time
@@ -1327,8 +1327,8 @@ class App(tk.CTk):
         self.main_frame_report_STUD = tk.CTkFrame(self, width=920, height=600, corner_radius=50)
         self.main_frame_report_STUD.place(x=180, y=0)
 
-        self.print_button = tk.CTkButton(self.main_frame_report_STUD, text="Print Eyegaze Report", command=self.stud_download_eyegaze)
-        self.print_button.place(x=50, y=400)
+        # self.print_button = tk.CTkButton(self.main_frame_report_STUD, text="Print Eyegaze Report", command=self.stud_download_eyegaze)
+        # self.print_button.place(x=50, y=400)
 
         self.eyegaze_table_frame = tk.CTkFrame(self.main_frame_report_STUD, width=600, height=350)
         self.eyegaze_table_frame.place(x=180, y=100)
@@ -1391,6 +1391,12 @@ class App(tk.CTk):
     # Open PROFESSOR SUMMARY REPORT PANEL
     def prof_sidebar_report_clicked(self):
         # MAIN SUMMARY REPORT PANEL
+
+        def confirm_delete(report_type, delete_function):
+            result = messagebox.askyesno("Confirmation", f"Are you sure you want to delete {report_type} report?")
+            if result:
+                delete_function()
+
         self.main_frame_report_PROF = tk.CTkFrame(self, width=920, height=600, corner_radius=50)
         self.main_frame_report_PROF.place(x=180, y=0)
 
@@ -1400,10 +1406,12 @@ class App(tk.CTk):
         self.print_button = tk.CTkButton(self.main_frame_report_PROF, text="Print Emotion Report", command=self.download_emotions)
         self.print_button.place(x=200, y=400)
 
-        self.print_button = tk.CTkButton(self.main_frame_report_PROF, text="Delete Eyegaze Report", command=self.delete_eyegaze_tbl)
+        self.print_button = tk.CTkButton(self.main_frame_report_PROF, text="Delete Eyegaze Report",
+                                       command=lambda: confirm_delete("Eyegaze", self.delete_eyegaze_tbl))
         self.print_button.place(x=400, y=400)
 
-        self.print_button = tk.CTkButton(self.main_frame_report_PROF, text="Delete Emotion Report", command=self.delete_emotions_tbl)
+        self.print_button = tk.CTkButton(self.main_frame_report_PROF, text="Delete Emotion Report",
+                                       command=lambda: confirm_delete("Emotion", self.delete_emotions_tbl))
         self.print_button.place(x=750, y=400)
 
 
