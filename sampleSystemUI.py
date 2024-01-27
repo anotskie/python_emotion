@@ -305,8 +305,8 @@ class App(tk.CTk):
             self.new_password_entry.configure(show="")
             self.confirm_password_entry.configure(show="")
         else:
-            self.new_password_entry.configure(show="")
-            self.confirm_password_entry.configure(show="")
+            self.new_password_entry.configure(show="*") 
+            self.confirm_password_entry.configure(show="*")
 
 
     def confirm_password_update(self):
@@ -1392,10 +1392,7 @@ class App(tk.CTk):
     def prof_sidebar_report_clicked(self):
         # MAIN SUMMARY REPORT PANEL
 
-        def confirm_delete(report_type, delete_function):
-            result = messagebox.askyesno("Confirmation", f"Are you sure you want to delete {report_type} report?")
-            if result:
-                delete_function()
+
 
         self.main_frame_report_PROF = tk.CTkFrame(self, width=920, height=600, corner_radius=50)
         self.main_frame_report_PROF.place(x=180, y=0)
@@ -1406,13 +1403,12 @@ class App(tk.CTk):
         self.print_button = tk.CTkButton(self.main_frame_report_PROF, text="Print Emotion Report", command=self.download_emotions)
         self.print_button.place(x=200, y=400)
 
-        self.print_button = tk.CTkButton(self.main_frame_report_PROF, text="Delete Eyegaze Report",
-                                       command=lambda: confirm_delete("Eyegaze", self.delete_eyegaze_tbl))
-        self.print_button.place(x=400, y=400)
+        self.print_button_eyegaze_delete = tk.CTkButton(self.main_frame_report_PROF, text="Delete Eyegaze Report", command=self.confirm_delete_eyegaze)
+        self.print_button_eyegaze_delete.place(x=400, y=400)
 
-        self.print_button = tk.CTkButton(self.main_frame_report_PROF, text="Delete Emotion Report",
-                                       command=lambda: confirm_delete("Emotion", self.delete_emotions_tbl))
-        self.print_button.place(x=750, y=400)
+        self.print_button_emotion_delete = tk.CTkButton(self.main_frame_report_PROF, text="Delete Emotion Report", command=self.confirm_delete_emotion)
+        self.print_button_emotion_delete.place(x=750, y=400)
+
 
 
         self.report_tabview = tk.CTkTabview(self.main_frame_report_PROF, width=800, height=350)
@@ -1466,6 +1462,33 @@ class App(tk.CTk):
 
         self.show_eyegaze_table()
         self.show_emotion_table()
+
+    def confirm_delete_eyegaze(self):
+        confirmation_frame = tk.CTkFrame(self, width=500, height=150, corner_radius=10)
+        confirmation_frame.place(x=400, y=200)
+
+        confirmation_label = tk.CTkLabel(confirmation_frame, text="Are you sure you want to delete the Eyegaze Report?", font=(None, 12))
+        confirmation_label.place(x=20, y=20)
+
+        yes_button = tk.CTkButton(confirmation_frame, text="Yes", command=self.delete_eyegaze_tbl)
+        yes_button.place(x=50, y=50)
+
+        no_button = tk.CTkButton(confirmation_frame, text="No", command=confirmation_frame.destroy)
+        no_button.place(x=200, y=50)
+
+    def confirm_delete_emotion(self):
+        confirmation_frame = tk.CTkFrame(self, width=500, height=150, corner_radius=10)
+        confirmation_frame.place(x=400, y=200)
+
+        confirmation_label = tk.CTkLabel(confirmation_frame, text="Are you sure you want to delete the Emotion Report?", font=(None, 12))
+        confirmation_label.place(x=20, y=20)
+
+        yes_button = tk.CTkButton(confirmation_frame, text="Yes", command=self.delete_emotions_tbl)
+        yes_button.place(x=50, y=50)
+
+        no_button = tk.CTkButton(confirmation_frame, text="No", command=confirmation_frame.destroy)
+        no_button.place(x=200, y=50)
+
 
     def sort_eyegaze_time(self):
         data = []
@@ -2687,7 +2710,8 @@ class App(tk.CTk):
 
     # TOGGLE PASSWORD
     def toggle_password_visibility(self):
-        if self.password == True:
+        self.password = not self.password  # Toggle the value
+        if self.password:
             self.password_entry.configure(show="*")
         else:
             self.password_entry.configure(show="")
@@ -2789,7 +2813,7 @@ class App(tk.CTk):
         elif not any(format in email for format in valid_email_formats):
                 
                     self.invalid_email_frame = tk.CTkFrame(self, width=500, height=150)
-                    self.invalid_email_frame.place(x=450, y=200)
+                    self.invalid_email_frame.place(x=300, y=200)
 
                         # Invalid email message
                     self.invalid_email_label = tk.CTkLabel(self.invalid_email_frame, text="Invalid email format. Please use @gmail.com, @yahoo.com, or @edu.ph.")
@@ -2797,7 +2821,7 @@ class App(tk.CTk):
 
                         # Ok button
                     self.ok_button = tk.CTkButton(self.invalid_email_frame, text="Ok", command=self.close_invalid_email, width=100)
-                    self.ok_button.place(x=100, y=90)
+                    self.ok_button.place(x=200, y=90)
 
         else:
 
