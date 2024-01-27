@@ -1468,26 +1468,26 @@ class App(tk.CTk):
         confirmation_frame.place(x=400, y=200)
 
         confirmation_label = tk.CTkLabel(confirmation_frame, text="Are you sure you want to delete the Eyegaze Report?", font=(None, 12))
-        confirmation_label.place(x=20, y=20)
+        confirmation_label.place(x=120, y=20)
 
         yes_button = tk.CTkButton(confirmation_frame, text="Yes", command=self.delete_eyegaze_tbl)
-        yes_button.place(x=50, y=50)
+        yes_button.place(x=100, y=90)
 
         no_button = tk.CTkButton(confirmation_frame, text="No", command=confirmation_frame.destroy)
-        no_button.place(x=200, y=50)
+        no_button.place(x=300, y=90)
 
     def confirm_delete_emotion(self):
         confirmation_frame = tk.CTkFrame(self, width=500, height=150, corner_radius=10)
         confirmation_frame.place(x=400, y=200)
 
         confirmation_label = tk.CTkLabel(confirmation_frame, text="Are you sure you want to delete the Emotion Report?", font=(None, 12))
-        confirmation_label.place(x=20, y=20)
+        confirmation_label.place(x=120, y=20)
 
         yes_button = tk.CTkButton(confirmation_frame, text="Yes", command=self.delete_emotions_tbl)
-        yes_button.place(x=50, y=50)
+        yes_button.place(x=100, y=90)
 
         no_button = tk.CTkButton(confirmation_frame, text="No", command=confirmation_frame.destroy)
-        no_button.place(x=200, y=50)
+        no_button.place(x=300, y=90)
 
 
     def sort_eyegaze_time(self):
@@ -2877,7 +2877,7 @@ class App(tk.CTk):
 
         # Confirmation Label
         self.error_signup_label = tk.CTkLabel(self.error_registration_frame, text="Email already exists")
-        self.error_signup_label.place(x=70, y=30)
+        self.error_signup_label.place(x=140, y=30)
 
         # Button
         self.back_to_login_button = tk.CTkButton(self.error_registration_frame, text="Back to Login", width=200, command=self.return_to_login)
